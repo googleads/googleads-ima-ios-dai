@@ -150,7 +150,6 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
     self.castManager.videoVC = nil;
 
     [self.streamManager destroy];
-    [self.adsLoader contentComplete];
   }
 }
 
