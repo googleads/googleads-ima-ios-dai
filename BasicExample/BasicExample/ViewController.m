@@ -11,9 +11,9 @@ static NSString *const kTestAppContentUrl_M3U8 =
 /// Live stream asset key.
 static NSString *const kAssetKey = @"sN_IYUG8STe1ZzhIIE_ksA";
 /// VOD content source ID.
-static NSString *const kContentSourceID = @"19463";
+static NSString *const kContentSourceID = @"2528370";
 /// VOD video ID.
-static NSString *const kVideoID = @"googleio-highlights";
+static NSString *const kVideoID = @"tears-of-steel";
 
 @interface ViewController () <IMAAdsLoaderDelegate, IMAStreamManagerDelegate>
 
@@ -135,6 +135,14 @@ static NSString *const kVideoID = @"googleio-highlights";
     }
     case kIMAAdEvent_AD_BREAK_ENDED: {
       NSLog(@"Ad break ended");
+      break;
+    }
+    case kIMAAdEvent_AD_PERIOD_STARTED: {
+      NSLog(@"Ad period started");
+      break;
+    }
+    case kIMAAdEvent_AD_PERIOD_ENDED: {
+      NSLog(@"Ad period ended");
       break;
     }
     default:

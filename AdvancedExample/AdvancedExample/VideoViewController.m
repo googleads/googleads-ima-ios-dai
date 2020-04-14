@@ -507,6 +507,14 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
       }
       break;
     }
+    case kIMAAdEvent_AD_PERIOD_STARTED: {
+      [self logMessage:@"Ad period started"];
+      break;
+    }
+    case kIMAAdEvent_AD_PERIOD_ENDED: {
+      [self logMessage:@"Ad period ended"];
+      break;
+    }
     case kIMAAdEvent_STREAM_LOADED: {
       if (self.video.streamType == StreamTypeVOD) {
         [self addContentPlayerObservers];

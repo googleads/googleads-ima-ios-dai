@@ -43,12 +43,8 @@
 - (void)initVideos {
   self.videos = @[
     [[Video alloc] initWithTitle:@"Live stream" assetKey:@"sN_IYUG8STe1ZzhIIE_ksA" apiKey:@""],
-    [[Video alloc] initWithTitle:@"VOD stream"
-                 contentSourceId:@"19463"
-                         videoId:@"googleio-highlights"
-                          apiKey:@""],
-    [[Video alloc] initWithTitle:@"VOD Stream w/ Subtitles"
-                 contentSourceId:@"19463"
+    [[Video alloc] initWithTitle:@"VOD Stream"
+                 contentSourceId:@"2528370"
                          videoId:@"tears-of-steel"
                           apiKey:@""]
   ];

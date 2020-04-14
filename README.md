@@ -4,9 +4,10 @@ Google Ads iOS IMA SDK
 This project hosts samples for the [iOS IMA SDK for DAI](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart).
 
 ### Requirements
-  * XCode 8 or newer
-  * iOS 9.0+
-  * CocoaPods (optional but recommended)
+
+*   XCode 8 or newer
+*   iOS 10.0+
+*   CocoaPods (optional but recommended)
 
 ### Installation Instructions
 The Sample Video Player is intended to be used with the [Quickstart guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart).<br />
