@@ -426,7 +426,9 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   self.localStreamRequested = YES;
   // Create an ad display container for ad rendering.
   IMAAdDisplayContainer *adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                          viewController:self
+                                          companionSlots:nil];
   // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
   self.IMAVideoDisplay = [[IMAAVPlayerVideoDisplay alloc] initWithAVPlayer:self.contentPlayer];
   // Create a stream request.

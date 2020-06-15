@@ -75,7 +75,9 @@ static NSString *const kVideoID = @"tears-of-steel";
 - (void)requestStream {
   // Create an ad display container for ad rendering.
   IMAAdDisplayContainer *adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                          viewController:self
+                                          companionSlots:nil];
   // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
   IMAAVPlayerVideoDisplay *imaVideoDisplay =
       [[IMAAVPlayerVideoDisplay alloc] initWithAVPlayer:self.contentPlayer];
