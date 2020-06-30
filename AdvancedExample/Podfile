@@ -4,5 +4,5 @@ platform :ios, '10'
 
 target "AdvancedExample" do
   pod 'GoogleAds-IMA-iOS-SDK', '~> 3.6'
-  pod 'google-cast-sdk', '~>3.2.0'
+  pod 'google-cast-sdk-no-bluetooth', '~>4.4.3'
 end
