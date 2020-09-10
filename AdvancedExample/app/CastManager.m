@@ -1,6 +1,12 @@
 #import "CastManager.h"
 
-@import GoogleCast;
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastContext.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastSession.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKGenericChannel.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKMediaInformation.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKMediaStatus.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKRemoteMediaClient.h"
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKSessionManager.h"
 
 #import "VideoViewController.h"
 
@@ -178,7 +184,7 @@ static NSString *const IMAContentTime = @"contentTime,";
   self.castStreamTime = [self.castSession.remoteMediaClient approximateStreamPosition];
   [self.videoVC updatePlayHeadWithTime:CMTimeMakeWithSeconds(self.castStreamTime, NSEC_PER_SEC)
                               duration:CMTimeMakeWithSeconds(self.castMediaDuration, NSEC_PER_SEC)];
-  [self.castChannel sendTextMessage:IMAGetContentTime];
+  [self.castChannel sendTextMessage:IMAGetContentTime error:nil];
 }
 
 - (void)playOrPauseVideo {

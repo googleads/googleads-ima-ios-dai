@@ -1,5 +1,5 @@
-@import AVFoundation;
-@import UIKit;
+#import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
 
 /// The player state.
 typedef NS_ENUM(NSInteger, StreamType) {

@@ -1,7 +1,16 @@
 #import "VideoViewController.h"
 
-@import AVFoundation;
-@import GoogleCast;
+#import <AVFoundation/AVFoundation.h>
+
+#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/UI/Headers/GoogleCast/GCKUICastButton.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAVPlayerVideoDisplay.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdDisplayContainer.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdsLoader.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMACuepoint.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMALiveStreamRequest.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAStreamManager.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAUiElements.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAVODStreamRequest.h"
 
 #import "CastManager.h"
 #import "Video.h"
@@ -482,12 +491,13 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
     case kIMAAdEvent_STARTED: {
       // Log extended data.
       NSString *extendedAdPodInfo = [[NSString alloc]
-          initWithFormat:@"Showing ad %d/%d, bumper: %@, title: %@, description: %@, contentType:"
-                         @"%@, pod index: %d, time offset: %lf, max duration: %lf.",
-                         event.ad.adPodInfo.adPosition, event.ad.adPodInfo.totalAds,
+          initWithFormat:@"Showing ad %ld/%ld, bumper: %@, title: %@, description: %@, contentType:"
+                         @"%@, pod index: %ld, time offset: %lf, max duration: %lf.",
+                         (long)event.ad.adPodInfo.adPosition, (long)event.ad.adPodInfo.totalAds,
                          event.ad.adPodInfo.isBumper ? @"YES" : @"NO", event.ad.adTitle,
-                         event.ad.adDescription, event.ad.contentType, event.ad.adPodInfo.podIndex,
-                         event.ad.adPodInfo.timeOffset, event.ad.adPodInfo.maxDuration];
+                         event.ad.adDescription, event.ad.contentType,
+                         (long)event.ad.adPodInfo.podIndex, event.ad.adPodInfo.timeOffset,
+                         event.ad.adPodInfo.maxDuration];
 
       [self logMessage:extendedAdPodInfo];
       [self updatePlayHeadState:YES];
@@ -523,9 +533,8 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
         if (self.video.savedTime > 0) {
           NSTimeInterval streamTime =
               [self.streamManager streamTimeForContentTime:self.video.savedTime];
-          [self.IMAVideoDisplay.playerItem
-              seekToTime:CMTimeMakeWithSeconds(streamTime, NSEC_PER_SEC)];
-          self.video.savedTime = 0;
+          [self.IMAVideoDisplay seekStreamToTime:streamTime];
+         self.video.savedTime = 0;
         }
       }
       self.streamPlaying = YES;

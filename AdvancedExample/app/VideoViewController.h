@@ -1,9 +1,9 @@
-@import GoogleInteractiveMediaAds;
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 #import "Video.h"
 
 @class CastManager;
+@class IMAAdsLoader;
 @class VideoViewController;
 
 @protocol VideoViewControllerDelegate
