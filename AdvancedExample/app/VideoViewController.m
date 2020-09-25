@@ -565,7 +565,8 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
              adDuration:(NSTimeInterval)adDuration
              adPosition:(NSInteger)adPosition
                totalAds:(NSInteger)totalAds
-        adBreakDuration:(NSTimeInterval)adBreakDuration {
+        adBreakDuration:(NSTimeInterval)adBreakDuration
+       adPeriodDuration:(NSTimeInterval)adPeriodDuration {
   // No-op here, but would used to update custom countdown timer.
 }
 
