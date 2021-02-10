@@ -1,0 +1,14 @@
+{
+  "configDefaults" : {
+    "optionSet" : {
+      "ProjectGenerationPlatformConfiguration" : {
+        "p" : "ios_x86_64"
+      }
+    }
+  },
+  "packages" : [
+    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/DAI/BasicExample"
+  ],
+  "projectName" : "BasicExample",
+  "workspaceRoot" : "../../../../../../../../.."
+}

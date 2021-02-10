@@ -1,7 +1,15 @@
 #import "ViewController.h"
 
-@import AVFoundation;
-@import GoogleInteractiveMediaAds;
+#import <AVFoundation/AVFoundation.h>
+
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAVPlayerVideoDisplay.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdDisplayContainer.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdError.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdEvent.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdsLoader.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMALiveStreamRequest.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAStreamManager.h"
+#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAVODStreamRequest.h"
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
@@ -121,12 +129,13 @@ static NSString *const kVideoID = @"tears-of-steel";
     case kIMAAdEvent_STARTED: {
       // Log extended data.
       NSString *extendedAdPodInfo = [[NSString alloc]
-          initWithFormat:@"Showing ad %d/%d, bumper: %@, title: %@, description: %@, contentType:"
-                         @"%@, pod index: %d, time offset: %lf, max duration: %lf.",
-                         event.ad.adPodInfo.adPosition, event.ad.adPodInfo.totalAds,
+          initWithFormat:@"Showing ad %ld/%ld, bumper: %@, title: %@, description: %@, contentType:"
+                         @"%@, pod index: %ld, time offset: %lf, max duration: %lf.",
+                         (long)event.ad.adPodInfo.adPosition, (long)event.ad.adPodInfo.totalAds,
                          event.ad.adPodInfo.isBumper ? @"YES" : @"NO", event.ad.adTitle,
-                         event.ad.adDescription, event.ad.contentType, event.ad.adPodInfo.podIndex,
-                         event.ad.adPodInfo.timeOffset, event.ad.adPodInfo.maxDuration];
+                         event.ad.adDescription, event.ad.contentType,
+                         (long)event.ad.adPodInfo.podIndex, event.ad.adPodInfo.timeOffset,
+                         event.ad.adPodInfo.maxDuration];
 
       NSLog(@"%@", extendedAdPodInfo);
       break;
