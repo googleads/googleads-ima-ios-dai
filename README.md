@@ -1,5 +1,4 @@
-Google Ads iOS IMA SDK
-----------------------
+## Google Ads iOS IMA SDK
 
 This project hosts samples for the [iOS IMA SDK for DAI](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart).
 
@@ -14,13 +13,18 @@ The Sample Video Player is intended to be used with the [Quickstart guide](https
 To run the Basic Example, add the SDK using the instructions provided [here](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart#add-the-sdk-to-the-xcode-project).
 
 ### Downloads
-Check out the [releases section](https://github.com/googleads/googleads-ima-ios-dai/releases) for downloadable zips of the source.
+
+Check out the
+[releases section](https://github.com/googleads/googleads-ima-ios-dai/releases)
+for downloadable zips of the source.
 
 ### More Info
 For more information, see the documentation at https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart.
 
 ### Announcements and Updates
-For API and client library updates and news, please follow our [Google+ Ads Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts) and our [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com/).
+
+For API and client library updates and news, please follow our
+[Google Ads Developers blog](http://googleadsdeveloper.blogspot.com/).
 
 Copyright 2018 Google LLC
 
