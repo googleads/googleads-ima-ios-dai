@@ -2,14 +2,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAVPlayerVideoDisplay.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdDisplayContainer.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdError.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdEvent.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdsLoader.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMALiveStreamRequest.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAStreamManager.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAVODStreamRequest.h"
+  #import <GoogleInteractveMediaAds/GoogleInteractiveMediaAd.h>
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
