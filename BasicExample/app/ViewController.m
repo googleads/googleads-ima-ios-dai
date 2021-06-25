@@ -1,8 +1,7 @@
 #import "ViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
-
-  #import <GoogleInteractveMediaAds/GoogleInteractiveMediaAd.h>
+#import <GoogleInteractveMediaAds/GoogleInteractiveMediaAd.h>
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
