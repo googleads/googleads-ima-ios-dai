@@ -1,7 +1,7 @@
 #import "ViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
-#import <GoogleInteractveMediaAds/GoogleInteractiveMediaAd.h>
+#import <GoogleInteractiveMediaAds/GoogleInteractiveMediaAds.h>
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
@@ -89,8 +89,8 @@ static NSString *const kVideoID = @"tears-of-steel";
   // VOD request. Comment out the IMALiveStreamRequest above and uncomment this IMAVODStreamRequest
   // to switch from a livestream to a VOD stream.
   /*IMAVODStreamRequest *request =
-      [[IMAVODStreamRequest alloc] initWithContentSourceId:kContentSourceID
-                                                videoId:kVideoID
+      [[IMAVODStreamRequest alloc] initWithContentSourceID:kContentSourceID
+                                                videoID:kVideoID
                                      adDisplayContainer:adDisplayContainer
                                            videoDisplay:imaVideoDisplay];*/
   [self.adsLoader requestStreamWithRequest:request];
