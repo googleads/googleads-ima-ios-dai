@@ -9,9 +9,9 @@ static NSString *const kTestAppContentUrl_M3U8 =
     @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
 
 /// Live stream asset key.
-static NSString *const kAssetKey = @"sN_IYUG8STe1ZzhIIE_ksA";
+static NSString *const kAssetKey = @"c-rArva4ShKVIAkNfy6HUQ";
 /// VOD content source ID.
-static NSString *const kContentSourceID = @"2528370";
+static NSString *const kContentSourceID = @"2548831";
 /// VOD video ID.
 static NSString *const kVideoID = @"tears-of-steel";
 
