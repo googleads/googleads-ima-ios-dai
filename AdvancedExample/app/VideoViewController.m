@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 /// Frame for controls in portrait mode.
 @property(nonatomic, assign) CGRect portraitControlsFrame;
 
-/// Flag for tracking fullscreen.
+/// Option for tracking fullscreen.
 @property(nonatomic, assign) BOOL fullscreen;
 
 /// Gesture recognizer for tap on video.
@@ -142,9 +142,9 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self.contentPlayer pause];
-  // Ignore this if we're presenting a modal view (e.g. in-app clickthrough).
+  // Ignore this if we're presenting a modal view (for example, in-app clickthrough).
   if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-    // Don't save bookmark if we're playing remotely via cast or playing a live stream.
+    // Don't save bookmark if we're playing remotely through cast or playing a live stream.
     if (self.castManager.playbackMode == PlaybackModeLocal ||
         self.video.streamType == StreamTypeLive) {
       NSTimeInterval contentTime = [self.streamManager
