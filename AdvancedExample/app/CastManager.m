@@ -1,14 +1,7 @@
 #import "CastManager.h"
-
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastContext.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastSession.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKGenericChannel.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKMediaInformation.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKMediaStatus.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKRemoteMediaClient.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKSessionManager.h"
-
 #import "VideoViewController.h"
+
+@import GoogleCast;
 
 /// Namespace for the cast communication channel.
 static NSString *const IMACastNamespace = @"urn:x-cast:com.google.ads.interactivemedia.dai.cast";

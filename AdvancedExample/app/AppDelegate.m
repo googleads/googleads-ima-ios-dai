@@ -1,10 +1,8 @@
 #import "AppDelegate.h"
 
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastContext.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKCastOptions.h"
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/Core/Headers/GoogleCast/GCKLogger.h"
-
 #import "MainViewController.h"
+
+@import GoogleCast;
 
 static BOOL const IMAEnableCastSDKLogging = YES;
 

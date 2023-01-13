@@ -113,7 +113,8 @@
         15D00CA919F5926000532960 /* Images.xcassets */,
         15D00C9C19F5926000532960 /* Supporting Files */,
       );
-      path = AdvancedExample;
+      name = AdvancedExample;
+      path = app;
       sourceTree = "<group>";
     };
     15D00C9C19F5926000532960 /* Supporting Files */ = {
@@ -123,6 +124,13 @@
         15D00C9E19F5926000532960 /* main.m */,
       );
       name = "Supporting Files";
+      sourceTree = "<group>";
+    };
+    AA2667EA81F2E31987587FF7 /* Pods */ = {
+      isa = PBXGroup;
+      children = (
+      );
+      path = Pods;
       sourceTree = "<group>";
     };
     F762F5DDCF574F5990418B8B /* Frameworks */ = {
@@ -179,6 +187,7 @@
       developmentRegion = English;
       hasScannedForEncodings = 0;
       knownRegions = (
+        English,
         en,
         Base,
       );
@@ -313,11 +322,12 @@
         GCC_PRECOMPILE_PREFIX_HEADER = NO;
         GCC_WARN_UNUSED_LABEL = YES;
         GCC_WARN_UNUSED_PARAMETER = NO;
-        INFOPLIST_FILE = AdvancedExample/Info.plist;
+        INFOPLIST_FILE = "$(SRCROOT)/app/Info.plist";
         IPHONEOS_DEPLOYMENT_TARGET = 8.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         ONLY_ACTIVE_ARCH = YES;
         OTHER_LDFLAGS = "$(inherited)";
+        PRODUCT_BUNDLE_IDENTIFIER = com.google.ima.AdvancedExample;
         PRODUCT_NAME = "$(TARGET_NAME)";
       };
       name = Debug;
@@ -333,11 +343,12 @@
         GCC_PRECOMPILE_PREFIX_HEADER = NO;
         GCC_WARN_UNUSED_LABEL = YES;
         GCC_WARN_UNUSED_PARAMETER = NO;
-        INFOPLIST_FILE = AdvancedExample/Info.plist;
+        INFOPLIST_FILE = "$(SRCROOT)/app/Info.plist";
         IPHONEOS_DEPLOYMENT_TARGET = 8.0;
         LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
         ONLY_ACTIVE_ARCH = NO;
         OTHER_LDFLAGS = "$(inherited)";
+        PRODUCT_BUNDLE_IDENTIFIER = com.google.ima.AdvancedExample;
         PRODUCT_NAME = "$(TARGET_NAME)";
       };
       name = Release;

@@ -1,11 +1,10 @@
 #import "MainViewController.h"
-
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/UI/Headers/GoogleCast/GCKUICastButton.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdsLoader.h"
-
 #import "CastManager.h"
 #import "Video.h"
 #import "VideoViewController.h"
+
+@import GoogleCast;
+@import GoogleInteractiveMediaAds;
 
 @interface MainViewController () <UIAlertViewDelegate, VideoViewControllerDelegate>
 

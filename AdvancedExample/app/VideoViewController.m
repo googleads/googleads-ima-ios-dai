@@ -1,19 +1,11 @@
 #import "VideoViewController.h"
+#import "CastManager.h"
+#import "Video.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "googlemac/iPhone/Chromecast/SDK/Framework/Release/UI/Headers/GoogleCast/GCKUICastButton.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAVPlayerVideoDisplay.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdDisplayContainer.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAAdsLoader.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMACuepoint.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMALiveStreamRequest.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAStreamManager.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAUiElements.h"
-#import "googlemac/iPhone/InteractiveMediaAds/IMA/common/source/API/IMAVODStreamRequest.h"
-
-#import "CastManager.h"
-#import "Video.h"
+@import GoogleCast;
+@import GoogleInteractiveMediaAds;
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
@@ -55,7 +47,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 /// Frame for controls in portrait mode.
 @property(nonatomic, assign) CGRect portraitControlsFrame;
 
-/// Option for tracking fullscreen.
+/// Flag for tracking fullscreen.
 @property(nonatomic, assign) BOOL fullscreen;
 
 /// Gesture recognizer for tap on video.
@@ -129,7 +121,9 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
   castButton.tintColor = [UIColor blackColor];
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:castButton];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
   if (self.castManager.isCasting) {
     self.castManager.playbackMode = PlaybackModeRemote;
     [self.castManager playStreamRemotely];
@@ -142,9 +136,9 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self.contentPlayer pause];
-  // Ignore this if we're presenting a modal view (for example, in-app clickthrough).
+  // Ignore this if we're presenting a modal view (e.g. in-app clickthrough).
   if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-    // Don't save bookmark if we're playing remotely through cast or playing a live stream.
+    // Don't save bookmark if we're playing remotely by cast or playing a live stream.
     if (self.castManager.playbackMode == PlaybackModeLocal ||
         self.video.streamType == StreamTypeLive) {
       NSTimeInterval contentTime = [self.streamManager
@@ -445,13 +439,15 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   if (self.video.streamType == StreamTypeLive) {
     request = [[IMALiveStreamRequest alloc] initWithAssetKey:self.video.assetKey
                                           adDisplayContainer:adDisplayContainer
-                                                videoDisplay:self.IMAVideoDisplay];
+                                                videoDisplay:self.IMAVideoDisplay
+                                                 userContext:nil];
     request.apiKey = self.video.apiKey;
   } else {
     request = [[IMAVODStreamRequest alloc] initWithContentSourceID:self.video.contentSourceID
                                                            videoID:self.video.videoId
                                                 adDisplayContainer:adDisplayContainer
-                                                      videoDisplay:self.IMAVideoDisplay];
+                                                      videoDisplay:self.IMAVideoDisplay
+                                                       userContext:nil];
     request.apiKey = self.video.apiKey;
   }
   [self.adsLoader requestStreamWithRequest:request];
