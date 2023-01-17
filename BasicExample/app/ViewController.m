@@ -2,7 +2,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@import GoogleInteractiveMediaAds.h;
+@import GoogleInteractiveMediaAds;
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
 /// be used.
