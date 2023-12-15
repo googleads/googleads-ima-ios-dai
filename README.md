@@ -2,7 +2,8 @@
 
 ![Build status](https://github.com/googleads/googleads-ima-ios-dai/workflows/Build%20Status/badge.svg?branch=main)
 
-This project hosts samples for the [iOS IMA SDK for DAI](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart).
+This project hosts samples for the
+[DAI SDK for iOS](https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/ios-quickstart).
 
 ### Requirements
 
@@ -11,8 +12,9 @@ This project hosts samples for the [iOS IMA SDK for DAI](https://developers.goog
 *   CocoaPods (optional but recommended)
 
 ### Installation Instructions
-The Sample Video Player is intended to be used with the [Quickstart guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart).<br />
-To run the Basic Example, add the SDK using the instructions provided [here](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart#add-the-sdk-to-the-xcode-project).
+
+The Sample Video Player is intended to be used with the [Quickstart guide](https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/ios).<br />
+To run the Basic Example, add the SDK using the instructions provided [here](https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/ios).
 
 ### Downloads
 
@@ -21,7 +23,9 @@ Check out the
 for downloadable zips of the source.
 
 ### More Info
-For more information, see the documentation at https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai-quickstart.
+
+For more information, see the documentation at
+https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/ios.
 
 ### Announcements and Updates
 
