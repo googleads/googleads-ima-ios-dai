@@ -44,7 +44,7 @@
   self.videos = @[
     [[Video alloc] initWithTitle:@"Live stream" assetKey:@"c-rArva4ShKVIAkNfy6HUQ" apiKey:@""],
     [[Video alloc] initWithTitle:@"VOD Stream"
-                 contentSourceId:@"2528370"
+                 contentSourceId:@"2548831"
                          videoId:@"tears-of-steel"
                           apiKey:@""]
   ];
