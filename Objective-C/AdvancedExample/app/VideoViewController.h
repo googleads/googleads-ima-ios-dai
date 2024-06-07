@@ -2,7 +2,6 @@
 
 #import "Video.h"
 
-@class CastManager;
 @class IMAAdsLoader;
 @class VideoViewController;
 
@@ -32,9 +31,6 @@
 /// Video object to play.
 @property(nonatomic, strong) Video *video;
 
-/// Manages the relationship between this device and a reomte cast device.
-@property(nonatomic, strong) CastManager *castManager;
-
 // AdsLoader
 @property(nonatomic, strong) IMAAdsLoader *adsLoader;
 
@@ -43,9 +39,6 @@
 
 /// Tracks whether or not we have requested a stream locally.
 @property(nonatomic, assign) BOOL localStreamRequested;
-
-/// Starts local playback after cast playback is exited.
-- (void)switchToLocalPlayback;
 
 /// Returns the content time for the currently playing stream.
 - (NSTimeInterval)getContentTime;
@@ -58,8 +51,5 @@
 
 /// Updates the player controls with the provided current time and duration.
 - (void)updatePlayHeadWithTime:(CMTime)time duration:(CMTime)duration;
-
-/// Pauses the current content. Called by the CastManager when we start remote playback.
-- (void)pauseContent;
 
 @end

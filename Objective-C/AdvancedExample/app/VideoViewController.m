@@ -1,10 +1,8 @@
 #import "VideoViewController.h"
-#import "CastManager.h"
 #import "Video.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@import GoogleCast;
 @import GoogleInteractiveMediaAds;
 
 /// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
@@ -78,8 +76,6 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.castManager.videoVC = self;
-
   self.topLabel.text = self.video.title;
   // Set the play button image.
   self.playBtnBG = [UIImage imageNamed:@"play.png"];
@@ -116,21 +112,10 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 
   self.adsLoader.delegate = self;
   [self setUpContentPlayer];
-
-  // GoogleCast button.
-  GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-  castButton.tintColor = [UIColor blackColor];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:castButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  if (self.castManager.isCasting) {
-    self.castManager.playbackMode = PlaybackModeRemote;
-    [self.castManager playStreamRemotely];
-  } else {
-    self.castManager.playbackMode = PlaybackModeLocal;
-    [self requestStream];
-  }
+  [self requestStream];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -138,9 +123,8 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   [self.contentPlayer pause];
   // Ignore this if we're presenting a modal view (e.g. in-app clickthrough).
   if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-    // Don't save bookmark if we're playing remotely by cast or playing a live stream.
-    if (self.castManager.playbackMode == PlaybackModeLocal ||
-        self.video.streamType == StreamTypeLive) {
+    // Don't save bookmark if we're playing a live stream.
+    if (self.video.streamType == StreamTypeLive) {
       NSTimeInterval contentTime = [self.streamManager
           contentTimeForStreamTime:CMTimeGetSeconds(self.contentPlayer.currentTime)];
       [self.delegate videoViewController:self didReportSavedTime:contentTime forVideo:self.video];
@@ -149,8 +133,6 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
     if (self.trackingContent) {
       [self removeContentPlayerObservers];
     }
-
-    self.castManager.videoVC = nil;
 
     [self.streamManager destroy];
     [self.adsLoader contentComplete];
@@ -218,14 +200,10 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 
 // Handle clicks on play/pause button.
 - (IBAction)onPlayPauseClicked:(id)sender {
-  if (self.castManager.playbackMode == PlaybackModeRemote) {
-    [self.castManager playOrPauseVideo];
+  if (self.streamPlaying) {
+    [self.contentPlayer pause];
   } else {
-    if (self.streamPlaying) {
-      [self.contentPlayer pause];
-    } else {
-      [self.contentPlayer play];
-    }
+    [self.contentPlayer play];
   }
 }
 
@@ -245,7 +223,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   if (![sender isKindOfClass:[UISlider class]]) {
     return;
   }
-  if (self.castManager.playbackMode == PlaybackModeLocal && !self.adPlaying) {
+  if (!self.adPlaying) {
     UISlider *slider = (UISlider *)sender;
     // If the playhead value changed by the user, skip to that point of the
     // content is skippable.
@@ -300,9 +278,6 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  if (self.castManager.playbackMode != PlaybackModeLocal) {
-    return;
-  }
   switch (interfaceOrientation) {
     case UIInterfaceOrientationLandscapeLeft:
     // Falls through.
@@ -353,36 +328,30 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 }
 
 - (IBAction)videoControlsTouchStarted:(id)sender {
-  if (self.castManager.playbackMode == PlaybackModeLocal) {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(hideFullscreenControls)
-                                               object:self];
+  [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                            selector:@selector(hideFullscreenControls)
+                                              object:self];
 
-    self.currentlySeeking = YES;
-    self.seekStartTime = self.contentPlayer.currentTime;
-  }
+  self.currentlySeeking = YES;
+  self.seekStartTime = self.contentPlayer.currentTime;
 }
 
 - (IBAction)videoControlsTouchEnded:(id)sender {
-  if (self.castManager.playbackMode == PlaybackModeLocal) {
-    if (self.fullscreen) {
-      [self startHideControlsTimer];
+  if (self.fullscreen) {
+    [self startHideControlsTimer];
+  }
+  self.currentlySeeking = NO;
+  if (!self.adPlaying) {
+    self.seekEndTime = CMTimeMake(self.progressBar.value, 1);
+    IMACuepoint *lastCuepoint =
+        [self.streamManager previousCuepointForStreamTime:CMTimeGetSeconds(self.seekEndTime)];
+    if (!lastCuepoint.played && (lastCuepoint.startTime > CMTimeGetSeconds(self.seekStartTime))) {
+      self.snapbackMode = YES;
+      // Add 1 to the seek time to get the keyframe at the start of the ad to be our landing
+      // place.
+      [self.contentPlayer
+          seekToTime:CMTimeMakeWithSeconds(lastCuepoint.startTime + 1, NSEC_PER_SEC)];
     }
-    self.currentlySeeking = NO;
-    if (!self.adPlaying) {
-      self.seekEndTime = CMTimeMake(self.progressBar.value, 1);
-      IMACuepoint *lastCuepoint =
-          [self.streamManager previousCuepointForStreamTime:CMTimeGetSeconds(self.seekEndTime)];
-      if (!lastCuepoint.played && (lastCuepoint.startTime > CMTimeGetSeconds(self.seekStartTime))) {
-        self.snapbackMode = YES;
-        // Add 1 to the seek time to get the keyframe at the start of the ad to be our landing
-        // place.
-        [self.contentPlayer
-            seekToTime:CMTimeMakeWithSeconds(lastCuepoint.startTime + 1, NSEC_PER_SEC)];
-      }
-    }
-  } else if (self.castManager.playbackMode == PlaybackModeRemote) {
-    [self.castManager seekToTimeInterval:self.progressBar.value];
   }
 }
 
@@ -573,43 +542,6 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   } else {
     return 0;
   }
-}
-
-- (void)pauseContent {
-  [self.contentPlayer pause];
-}
-
-- (void)switchToLocalPlayback {
-  NSLog(@"switchToLocalPlayback");
-
-  if (self.castManager.playbackMode == PlaybackModeLocal) {
-    return;
-  }
-
-  if (self.video.streamType == StreamTypeLive) {
-    if (self.localStreamRequested) {
-      [self.contentPlayer seekToTime:CMTimeMakeWithSeconds(MAXFLOAT, NSEC_PER_SEC)];
-      [self.contentPlayer play];
-    } else {
-      [self requestStream];
-    }
-  } else if (self.adPlaying) {
-    NSTimeInterval timeToSeek =
-        [self.streamManager streamTimeForContentTime:self.castManager.castContentTime];
-    self.seekEndTime = CMTimeMakeWithSeconds(timeToSeek, NSEC_PER_SEC);
-    self.snapbackMode = YES;
-    [self.contentPlayer play];
-  } else if (self.localStreamRequested) {
-    NSTimeInterval timeToSeek =
-        [self.streamManager streamTimeForContentTime:self.castManager.castContentTime];
-    [self.contentPlayer seekToTime:CMTimeMakeWithSeconds(timeToSeek, NSEC_PER_SEC)];
-    [self.contentPlayer play];
-  } else {
-    self.video.savedTime = self.castManager.castContentTime;
-    [self requestStream];
-  }
-
-  self.castManager.playbackMode = PlaybackModeLocal;
 }
 
 #pragma mark Utility methods

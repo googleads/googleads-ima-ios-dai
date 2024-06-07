@@ -1,18 +1,13 @@
 #import "MainViewController.h"
-#import "CastManager.h"
 #import "Video.h"
 #import "VideoViewController.h"
 
-@import GoogleCast;
 @import GoogleInteractiveMediaAds;
 
 @interface MainViewController () <UIAlertViewDelegate, VideoViewControllerDelegate>
 
 /// Storage point for videos.
 @property(nonatomic, copy) NSArray<Video *> *videos;
-
-/// Manages cast relationship.
-@property(nonatomic, strong) CastManager *castManager;
 
 // AdsLoader
 @property(nonatomic, strong) IMAAdsLoader *adsLoader;
@@ -25,14 +20,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self initVideos];
-
-  // Cast manager.
-  self.castManager = [[CastManager alloc] init];
-
-  // GoogleCast button
-  GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-  castButton.tintColor = [UIColor blackColor];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:castButton];
 
   // AdsLoader
   // Re-use this IMAAdsLoader instance for the entire lifecycle of your app.
@@ -58,7 +45,6 @@
     VideoViewController *destVC = (VideoViewController *)segue.destinationViewController;
     destVC.delegate = self;
     destVC.video = video;
-    destVC.castManager = self.castManager;
     destVC.adsLoader = self.adsLoader;
   }
 }
