@@ -124,7 +124,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   // Ignore this if we're presenting a modal view (e.g. in-app clickthrough).
   if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
     // Don't save bookmark if we're playing a live stream.
-    if (self.video.streamType == StreamTypeLive) {
+    if (self.video.streamType != StreamTypeLive) {
       NSTimeInterval contentTime = [self.streamManager
           contentTimeForStreamTime:CMTimeGetSeconds(self.contentPlayer.currentTime)];
       [self.delegate videoViewController:self didReportSavedTime:contentTime forVideo:self.video];
