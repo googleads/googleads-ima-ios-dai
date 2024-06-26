@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '14'
+
+target 'VideoStitcherExample' do
+  pod 'GoogleAds-IMA-iOS-SDK'
+end

@@ -1,0 +1,408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		76067DCD980E3F35E4A4999A /* libPods-VideoStitcherExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 491000F951B9AACB154CE1B6 /* libPods-VideoStitcherExample.a */; };
+		A093EE5525D362960020CE6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE4C25D362950020CE6C /* AppDelegate.m */; };
+		A093EE5625D362960020CE6C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A093EE4D25D362950020CE6C /* iPhone.storyboard */; };
+		A093EE5725D362960020CE6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A093EE4F25D362950020CE6C /* Images.xcassets */; };
+		A093EE5925D362960020CE6C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE5225D362950020CE6C /* ViewController.m */; };
+		A093EE5A25D362960020CE6C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A093EE5325D362950020CE6C /* iPad.storyboard */; };
+		A093EE5B25D362960020CE6C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE5425D362960020CE6C /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1569505F1D5BC117006BEC0A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1589E157199126CA00E5DF1A /* VideoStitcherExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoStitcherExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15C30C4F1AE6D50500374786 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		491000F951B9AACB154CE1B6 /* libPods-VideoStitcherExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoStitcherExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A093EE4B25D362950020CE6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A093EE4C25D362950020CE6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A093EE4E25D362950020CE6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
+		A093EE4F25D362950020CE6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A093EE5025D362950020CE6C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A093EE5125D362950020CE6C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A093EE5225D362950020CE6C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A093EE5325D362950020CE6C /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		A093EE5425D362960020CE6C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3139797D41B1F6211597EEA /* Pods-VideoStitcherExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStitcherExample.release.xcconfig"; path = "Target Support Files/Pods-VideoStitcherExample/Pods-VideoStitcherExample.release.xcconfig"; sourceTree = "<group>"; };
+		E022BEAD5719847CAB3F48D3 /* Pods-VideoStitcherExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoStitcherExample.debug.xcconfig"; path = "Target Support Files/Pods-VideoStitcherExample/Pods-VideoStitcherExample.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1589E154199126CA00E5DF1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */,
+				76067DCD980E3F35E4A4999A /* libPods-VideoStitcherExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02733AA8386749E688D4F7A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15C30C4F1AE6D50500374786 /* WebKit.framework */,
+				491000F951B9AACB154CE1B6 /* libPods-VideoStitcherExample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		152D49DE19B10DA0003400E4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1589E14E199126CA00E5DF1A = {
+			isa = PBXGroup;
+			children = (
+				A093EE4A25D362950020CE6C /* app */,
+				152D49DE19B10DA0003400E4 /* Resources */,
+				1589E158199126CA00E5DF1A /* Products */,
+				02733AA8386749E688D4F7A2 /* Frameworks */,
+				EB97DD51877C44BF44746331 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		1589E158199126CA00E5DF1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1589E157199126CA00E5DF1A /* VideoStitcherExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A093EE4A25D362950020CE6C /* app */ = {
+			isa = PBXGroup;
+			children = (
+				A093EE4B25D362950020CE6C /* AppDelegate.h */,
+				A093EE4C25D362950020CE6C /* AppDelegate.m */,
+				A093EE4D25D362950020CE6C /* iPhone.storyboard */,
+				A093EE4F25D362950020CE6C /* Images.xcassets */,
+				A093EE5025D362950020CE6C /* Info.plist */,
+				A093EE5125D362950020CE6C /* ViewController.h */,
+				A093EE5225D362950020CE6C /* ViewController.m */,
+				A093EE5325D362950020CE6C /* iPad.storyboard */,
+				A093EE5425D362960020CE6C /* main.m */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		EB97DD51877C44BF44746331 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E022BEAD5719847CAB3F48D3 /* Pods-VideoStitcherExample.debug.xcconfig */,
+				D3139797D41B1F6211597EEA /* Pods-VideoStitcherExample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1589E156199126CA00E5DF1A /* VideoStitcherExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "VideoStitcherExample" */;
+			buildPhases = (
+				99E30E31DCC421A10CF8761B /* [CP] Check Pods Manifest.lock */,
+				1589E153199126CA00E5DF1A /* Sources */,
+				1589E154199126CA00E5DF1A /* Frameworks */,
+				1589E155199126CA00E5DF1A /* Resources */,
+				1569505F1D5BC117006BEC0A /* Embed Frameworks */,
+				68E0D0328D7247DEB8787C37 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VideoStitcherExample;
+			productName = VideoStitcherExample;
+			productReference = 1589E157199126CA00E5DF1A /* VideoStitcherExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1589E14F199126CA00E5DF1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Google, Inc.";
+				TargetAttributes = {
+					1589E156199126CA00E5DF1A = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "VideoStitcherExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 1589E14E199126CA00E5DF1A;
+			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1589E156199126CA00E5DF1A /* VideoStitcherExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1589E155199126CA00E5DF1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A093EE5A25D362960020CE6C /* iPad.storyboard in Resources */,
+				A093EE5625D362960020CE6C /* iPhone.storyboard in Resources */,
+				A093EE5725D362960020CE6C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		68E0D0328D7247DEB8787C37 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoStitcherExample/Pods-VideoStitcherExample-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework/GoogleInteractiveMediaAds",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoStitcherExample/Pods-VideoStitcherExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99E30E31DCC421A10CF8761B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VideoStitcherExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1589E153199126CA00E5DF1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A093EE5925D362960020CE6C /* ViewController.m in Sources */,
+				A093EE5B25D362960020CE6C /* main.m in Sources */,
+				A093EE5525D362960020CE6C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A093EE4D25D362950020CE6C /* iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A093EE4E25D362950020CE6C /* Base */,
+			);
+			name = iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1589E175199126CA00E5DF1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1589E176199126CA00E5DF1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1589E178199126CA00E5DF1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E022BEAD5719847CAB3F48D3 /* Pods-VideoStitcherExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.ima.VideoStitcherExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.google.ima.VideoStitcherExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1589E179199126CA00E5DF1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3139797D41B1F6211597EEA /* Pods-VideoStitcherExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.ima.VideoStitcherExample;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.google.ima.VideoStitcherExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "VideoStitcherExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1589E175199126CA00E5DF1A /* Debug */,
+				1589E176199126CA00E5DF1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "VideoStitcherExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1589E178199126CA00E5DF1A /* Debug */,
+				1589E179199126CA00E5DF1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
+}
