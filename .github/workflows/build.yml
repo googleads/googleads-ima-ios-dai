@@ -22,13 +22,13 @@ jobs:
         - "BasicExample"
         - "SampleVideoPlayer"
     steps:
-      - name: Clone Repo
+      - name: Clone repository
         uses: actions/checkout@v1
 
       - name: Xcode version
         run: /usr/bin/xcodebuild -version
 
-      - name: Pod repo update
+      - name: Update CocoaPods specs repository
         run: pod repo update
 
       - name: Install xcpretty
