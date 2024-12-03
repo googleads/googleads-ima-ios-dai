@@ -1,52 +1,41 @@
 #import "ViewController.h"
 
-@import AVFoundation;
+#import <AVKit/AVKit.h>
+
+/// Content URL.
+static NSString *const kBackupContentUrl =
+    @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
 
 @interface ViewController ()
-
-/// Content video player.
-@property(nonatomic, strong) AVPlayer *contentPlayer;
-
 /// Play button.
 @property(nonatomic, weak) IBOutlet UIButton *playButton;
 
-/// UIView in which we will render our AVPlayer for content.
 @property(nonatomic, weak) IBOutlet UIView *videoView;
-
+/// Video player.
+@property(nonatomic, strong) AVPlayer *videoPlayer;
 @end
 
 @implementation ViewController
 
-// The content URL to play.
-NSString *const kTestAppContentUrl_MP4 =
-    @"https://storage.googleapis.com/gvabox/media/samples/android.mp4";
-
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.view.backgroundColor = [UIColor blackColor];
 
-  self.playButton.layer.zPosition = MAXFLOAT;
-
-  [self setUpContentPlayer];
-}
-
-- (IBAction)onPlayButtonTouch:(id)sender {
-  [self.contentPlayer play];
-  self.playButton.hidden = YES;
-}
-
-#pragma mark Content Player Setup
-
-- (void)setUpContentPlayer {
-  // Load AVPlayer with path to our content.
-  NSURL *contentURL = [NSURL URLWithString:kTestAppContentUrl_MP4];
-  self.contentPlayer = [AVPlayer playerWithURL:contentURL];
+  // Load AVPlayer with the path to your content.
+  NSURL *contentURL = [NSURL URLWithString:kBackupContentUrl];
+  self.videoPlayer = [AVPlayer playerWithURL:contentURL];
 
   // Create a player layer for the player.
-  AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.contentPlayer];
+  AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
 
   // Size, position, and display the AVPlayer.
   playerLayer.frame = self.videoView.layer.bounds;
   [self.videoView.layer addSublayer:playerLayer];
+}
+
+- (IBAction)onPlayButtonTouch:(id)sender {
+  [self.videoPlayer play];
+  self.playButton.hidden = YES;
 }
 
 @end
