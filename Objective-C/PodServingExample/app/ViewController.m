@@ -1,59 +1,40 @@
-// Copyright 2024 Google LLC. All rights reserved.
-//
-//
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
-// file except in compliance with the License. You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-// ANY KIND, either express or implied. See the License for the specific language governing
-// permissions and limitations under the License.
-
 #import "ViewController.h"
-
 #import <AVFoundation/AVFoundation.h>
 
+// [START import_ima_sdk]
 @import GoogleInteractiveMediaAds;
 
+// [START_EXCLUDE]
 typedef enum {liveStream, vodStream} streamType;
-/// Specifies the ad pod stream type; either `liveStream` or `vodStream`.
-static streamType const kRequestType = liveStream;
-/// Google Ad Manager network code.
-static NSString *const kNetworkCode = @"";
-/// Livestream custom asset key.
-static NSString *const kCustomAssetKey = @"";
-/// Returns the stream manifest URL from the video technical partner or manifest manipulator.
-static NSString *(^gCustomVTPParser)(NSString *) = ^(NSString *streamID) {
-  // Insert synchronous code here to retrieve a stream manifest URL from your video tech partner
-  // or manifest manipulation server.
-  NSString *manifestUrl = @"";
-  return manifestUrl;
-};
 
-/// Fallback URL in case something goes wrong in loading the stream. If all goes well, this will not
-/// be used.
-static NSString *const kBackupStreamURLString = @"";
+/// Specifies the ad pod stream type; either `liveStream` or `vodStream`. Change to `vodStream` to
+/// make a VOD request.
+static streamType const kRequestType = liveStream;
+
+/// The backup stream is only played when an error is detected during the stream creation.
+static NSString *const kBackupContentUrl =
+    @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
+// [END_EXCLUDE]
 
 @interface ViewController () <IMAAdsLoaderDelegate, IMAStreamManagerDelegate>
+/// The entry point for the IMA DAI SDK to make DAI stream requests.
+@property(nonatomic, strong) IMAAdsLoader *adsLoader;
+/// The container where the SDK renders each ad's user interface elements and companion slots.
+@property(nonatomic, strong) IMAAdDisplayContainer *adDisplayContainer;
+/// The reference of your video player for the IMA DAI SDK to monitor playback and handle timed
+/// metadata.
+@property(nonatomic, strong) IMAAVPlayerVideoDisplay *imaVideoDisplay;
+/// References the stream manager from the IMA DAI SDK after successful stream loading.
+@property(nonatomic, strong) IMAStreamManager *streamManager;
 
-/// Content video player.
-@property(nonatomic, strong) AVPlayer *contentPlayer;
-
-// UI
+// [START_EXCLUDE]
 /// Play button.
 @property(nonatomic, weak) IBOutlet UIButton *playButton;
-/// UIView in which we will render our AVPlayer for content.
-@property(nonatomic, weak) IBOutlet UIView *videoView;
 
-// SDK
-/// Entry point for the SDK. Used to make ad requests.
-@property(nonatomic, strong) IMAAdsLoader *adsLoader;
-/// Main point of interaction with the SDK. Created by the SDK as the result of an ad request.
-@property(nonatomic, strong) IMAStreamManager *streamManager;
-/// Video display used by the SDK to play ads.
-@property(nonatomic, strong) id<IMAVideoDisplay> videoDisplay;
+@property(nonatomic, weak) IBOutlet UIView *videoView;
+/// Video player to play the DAI stream for both content and ads.
+@property(nonatomic, strong) AVPlayer *videoPlayer;
+// [END_EXCLUDE]
 
 @end
 
@@ -62,60 +43,57 @@ static NSString *const kBackupStreamURLString = @"";
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  // [START_EXCLUDE]
   self.playButton.layer.zPosition = MAXFLOAT;
 
-  [self setupAdsLoader];
-  [self setUpContentPlayer];
-}
+  // Load AVPlayer with path to your content.
+  NSURL *contentURL = [NSURL URLWithString:kBackupContentUrl];
+  self.videoPlayer = [AVPlayer playerWithURL:contentURL];
 
+  // Create a player layer for the player.
+  AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.videoPlayer];
+
+  // Size, position, and display the AVPlayer.
+  playerLayer.frame = self.videoView.layer.bounds;
+  [self.videoView.layer addSublayer:playerLayer];
+  // [END_EXCLUDE]
+
+  self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
+  self.adsLoader.delegate = self;
+
+  // Create an ad display container for rendering each ad's user interface elements and companion
+  // slots.
+  self.adDisplayContainer =
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                          viewController:self
+                                          companionSlots:nil];
+
+  // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
+  self.imaVideoDisplay = [[IMAAVPlayerVideoDisplay alloc] initWithAVPlayer:self.videoPlayer];
+}
+// [END import_ima_sdk]
+
+// [START make_stream_request]
 - (IBAction)onPlayButtonTouch:(id)sender {
   [self requestStream];
   self.playButton.hidden = YES;
 }
 
-#pragma mark Content Player Setup
-
-- (void)setUpContentPlayer {
-  // Load AVPlayer with path to our content.
-  NSURL *contentURL = [NSURL URLWithString:kBackupStreamURLString];
-  self.contentPlayer = [AVPlayer playerWithURL:contentURL];
-
-  // Create a player layer for the player.
-  AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.contentPlayer];
-
-  // Size, position, and display the AVPlayer.
-  playerLayer.frame = self.videoView.layer.bounds;
-  [self.videoView.layer addSublayer:playerLayer];
-}
-
-#pragma mark SDK Setup
-
-- (void)setupAdsLoader {
-  self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
-  self.adsLoader.delegate = self;
-}
-
 - (void)requestStream {
-  // Create an ad display container for ad rendering.
-  IMAAdDisplayContainer *adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
-                                          viewController:self
-                                          companionSlots:nil];
-  // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
-  self.videoDisplay =
-      [[IMAAVPlayerVideoDisplay alloc] initWithAVPlayer:self.contentPlayer];
+  // Create a stream request. Use one of "Live stream request" or "VOD request", depending on your
+  // type of stream.
   IMAStreamRequest *request;
   if (kRequestType == liveStream) {
-    // Create a pod serving request for a livestream.
-    request = [[IMAPodStreamRequest alloc] initWithNetworkCode:kNetworkCode
-                                                customAssetKey:kCustomAssetKey
+    // Live stream request. Replace the network code and custom asset key with your values.
+    request = [[IMAPodStreamRequest alloc] initWithNetworkCode:@"NETWORK_CODE"
+                                                customAssetKey:@"CUSTOM_ASSET_KEY"
                                             adDisplayContainer:adDisplayContainer
                                                   videoDisplay:self.videoDisplay
                                          pictureInPictureProxy:nil
                                                    userContext:nil];
   } else {
-    // Create a pod serving request for a VOD stream.
-    request = [[IMAPodVODStreamRequest alloc] initWithNetworkCode:kNetworkCode
+    // VOD request. Replace the network code with your value.
+    request = [[IMAPodVODStreamRequest alloc] initWithNetworkCode:@"NETWORK_CODE"
                                                adDisplayContainer:adDisplayContainer
                                                      videoDisplay:self.videoDisplay
                                             pictureInPictureProxy:nil
@@ -123,20 +101,17 @@ static NSString *const kBackupStreamURLString = @"";
   }
   [self.adsLoader requestStreamWithRequest:request];
 }
+// [END make_stream_request]
 
-#pragma mark AdsLoader Delegates
-
+// [START ads_loader_delegates]
 - (void)adsLoader:(IMAAdsLoader *)loader adsLoadedWithData:(IMAAdsLoadedData *)adsLoadedData {
-  // Initialize and listen to stream manager's events.
+  NSLog(@"Stream created with: %@.", adsLoadedData.streamManager.streamId);
   self.streamManager = adsLoadedData.streamManager;
-  // The stream manager must be initialized before playback for adsRenderingSettings to be
-  // respected.
-  [self.streamManager initializeWithAdsRenderingSettings:nil];
   self.streamManager.delegate = self;
-
+  
   // Build the Pod serving Stream URL and load into AVPlayer
   NSString *streamId = adsLoadedData.streamManager.streamId;
-  NSString *urlString = gCustomVTPParser(streamId);
+  NSString *urlString = myCustomVTPParser(streamId);
   NSURL *streamUrl = [NSURL URLWithString:urlString];
   if (kRequestType == liveStream) {
     [self.videoDisplay loadStream:streamUrl withSubtitles:@[]];
@@ -146,20 +121,29 @@ static NSString *const kBackupStreamURLString = @"";
     // There is no need to trigger playback here.
     // streamManager.loadThirdPartyStream will load the stream, request metadata, and play
   }
-  NSLog(@"Stream created with: %@.", self.streamManager.streamId);
 }
 
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
-  // Something went wrong loading ads. Log the error and play the content.
+  // Log the error and play the content.
   NSLog(@"AdsLoader error, code:%ld, message: %@", adErrorData.adError.code,
         adErrorData.adError.message);
-  [self.contentPlayer play];
+  [self.videoPlayer play];
 }
+// [END ads_loader_delegates]
 
-#pragma mark StreamManager Delegates
+// [START custom_vtp_parser]
+- (NSString *)myCustomVTPParser:(NSString *)streamId {
+  // Replace with your custom VTP parser code. Your VTP parser takes the streamId and returns a URL
+  // string that points to the stitched Pod serving stream.
+  // For example:
+  NSString *urlString = [NSString stringWithFormat:@"MY_VTP_URL?streamId=%@", streamId];
+  return urlString;
+}
+// [END custom_vtp_parser]
 
+// [START stream_manager_delegates]
 - (void)streamManager:(IMAStreamManager *)streamManager didReceiveAdEvent:(IMAAdEvent *)event {
-  NSLog(@"StreamManager event (%@).", event.typeString);
+  NSLog(@"Ad event (%@).", event.typeString);
   switch (event.type) {
     case kIMAAdEvent_STARTED: {
       // Log extended data.
@@ -199,7 +183,8 @@ static NSString *const kBackupStreamURLString = @"";
 - (void)streamManager:(IMAStreamManager *)streamManager didReceiveAdError:(IMAAdError *)error {
   NSLog(@"StreamManager error with type: %ld\ncode: %ld\nmessage: %@", error.type, error.code,
         error.message);
-  [self.contentPlayer play];
+  [self.videoPlayer play];
 }
+// [END stream_manager_delegates]
 
 @end
