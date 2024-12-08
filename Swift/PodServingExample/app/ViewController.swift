@@ -130,10 +130,10 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
     let urlString = ViewController.customVTPParser(streamID!)
     let streamUrl = URL(string: urlString)
     if ViewController.requestType == StreamType.liveStream {
-      self.videoDisplay.loadStream(streamUrl?, withSubtitles: [])
+      self.videoDisplay.loadStream(streamUrl!, withSubtitles: [])
       self.videoDisplay.play()
     } else {
-      self.streamManager?.loadThirdPartyStream(streamUrl?, streamSubtitles: [])
+      self.streamManager?.loadThirdPartyStream(streamUrl!, streamSubtitles: [])
       // Skip calling self.videoDisplay.play() because the streamManager.loadThirdPartyStream()
       // function will play the stream as soon as loading is completed.
     }
