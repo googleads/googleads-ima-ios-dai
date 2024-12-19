@@ -5,6 +5,12 @@
 @import GoogleInteractiveMediaAds;
 
 // [START_EXCLUDE]
+typedef enum {liveStream, vodStream} streamType;
+
+/// Specifies the ad pod stream type; either `liveStream` or `vodStream`. Change to `vodStream` to
+/// make a VOD request.
+static streamType const kRequestType = liveStream;
+
 /// The backup stream is only played when an error is detected during the stream creation.
 static NSString *const kBackupContentUrl =
     @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
@@ -77,9 +83,7 @@ static NSString *const kBackupContentUrl =
   // Create a stream request. Use one of "Live stream request" or "VOD request", depending on your
   // type of stream.
   IMAStreamRequest *request;
-  // Switch this variable to NO to make a VOD request.
-  BOOL useLiveStream = YES;
-  if (useLiveStream) {
+  if (kRequestType == liveStream) {
     // Live stream request. Replace the asset key with your value.
     request = [[IMALiveStreamRequest alloc] initWithAssetKey:@"c-rArva4ShKVIAkNfy6HUQ"
                                           adDisplayContainer:self.adDisplayContainer
