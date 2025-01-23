@@ -82,6 +82,7 @@ static NSString *const kBackupContentUrl =
   if (useLiveStream) {
     // Live stream request. Replace the asset key with your value.
     request = [[IMALiveStreamRequest alloc] initWithAssetKey:@"c-rArva4ShKVIAkNfy6HUQ"
+                                                 networkCode:@"21775744923"
                                           adDisplayContainer:self.adDisplayContainer
                                                 videoDisplay:self.imaVideoDisplay
                                                  userContext:nil];
@@ -89,6 +90,7 @@ static NSString *const kBackupContentUrl =
     // VOD request. Replace the content source ID and video ID with your values.
     request = [[IMAVODStreamRequest alloc] initWithContentSourceID:@"2548831"
                                                            videoID:@"tears-of-steel"
+                                                       networkCode:@"21775744923"
                                                 adDisplayContainer:self.adDisplayContainer
                                                       videoDisplay:self.imaVideoDisplay
                                                        userContext:nil];
