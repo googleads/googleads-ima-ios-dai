@@ -12,82 +12,93 @@
 // permissions and limitations under the License.
 
 import AVFoundation
+// [START import_ima_sdk]
 import GoogleInteractiveMediaAds
+// [START_EXCLUDE]
 import UIKit
+// [END_EXCLUDE]
 
 class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDelegate {
-  enum StreamType { case liveStream, vodStream }
-  // Stream request type. Either `StreamType.liveStream` or `StreamType.vodStream`.
-  static let requestType = StreamType.liveStream
-  // Live stream asset keys.
+  // [START_EXCLUDE]
+  enum StreamType { case live, vod }
+
+  /// Specifies the ad pod stream type; either `StreamType.live` or `StreamType.vod`.
+  ///
+  /// Change to `StreamType.vod` to make a VOD request.
+  static let requestType = StreamType.live
+  /// Live stream asset key.
   static let assetKey = "c-rArva4ShKVIAkNfy6HUQ"
-  // VOD content source and video ID.
+  /// VOD content source ID.
   static let contentSourceID = "2548831"
+  /// VOD video ID.
   static let videoID = "tears-of-steel"
-  // Backup content URL
-  static let backupStreamURLString = """
-    http://googleimadev-vh.akamaihd.net/i/big_buck_bunny/\
-    bbb-,480p,720p,1080p,.mov.csmil/master.m3u8
-    """
 
+  /// The backup stream is only played when an error is detected during the stream creation.
+  static let backupStreamURLString =
+    "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
+  // [END_EXCLUDE]
+
+  /// The entry point for the IMA DAI SDK to make DAI stream requests.
   private var adsLoader: IMAAdsLoader?
-  private var videoDisplay: IMAAVPlayerVideoDisplay!
+  /// The container where the SDK renders each ad's user interface elements and companion slots.
   private var adDisplayContainer: IMAAdDisplayContainer?
+  /// The reference of your video player for the IMA DAI SDK to monitor playback and handle timed
+  /// metadata.
+  private var imaVideoDisplay: IMAAVPlayerVideoDisplay!
+  /// References the stream manager from the IMA DAI SDK after successful stream loading.
   private var streamManager: IMAStreamManager?
-  private var contentPlayhead: IMAAVPlayerContentPlayhead?
-  private var playerViewController: AVPlayerViewController!
-  private var userSeekTime = 0.0
-  private var adBreakActive = false
 
-  private var contentPlayer: AVPlayer?
+  // [START_EXCLUDE]
+  /// Play button.
   @IBOutlet private weak var playButton: UIButton!
+
   @IBOutlet private weak var videoView: UIView!
+  /// Video player to play the DAI stream for both content and ads.
+  private var videoPlayer: AVPlayer?
+  // [END_EXCLUDE]
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // [START_EXCLUDE]
     playButton.layer.zPosition = CGFloat(MAXFLOAT)
 
-    setupAdsLoader()
-    setUpPlayer()
-  }
+    // Load AVPlayer with path to our content.
+    let contentURL = URL(string: ViewController.backupStreamURLString)!
+    videoPlayer = AVPlayer(url: contentURL)
 
+    // Create a player layer for the player.
+    let playerLayer = AVPlayerLayer(player: videoPlayer)
+
+    // Size, position, and display the AVPlayer.
+    playerLayer.frame = videoView.layer.bounds
+    videoView.layer.addSublayer(playerLayer)
+    // [END_EXCLUDE]
+
+    adsLoader = IMAAdsLoader(settings: nil)
+    adsLoader?.delegate = self
+
+    // Create an ad display container for rendering each ad's user interface elements and companion
+    // slots.
+    adDisplayContainer = IMAAdDisplayContainer(
+      adContainer: videoView,
+      viewController: self,
+      companionSlots: nil)
+
+    // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
+    imaVideoDisplay = IMAAVPlayerVideoDisplay(avPlayer: videoPlayer)
+  }
+  // [END import_ima_sdk]
+
+  // [START make_stream_request]
   @IBAction func onPlayButtonTouch(_ sender: Any) {
     requestStream()
     playButton.isHidden = true
   }
 
-  // MARK: Content Player Setup
-
-  func setUpPlayer() {
-    // Load AVPlayer with path to our content.
-    contentPlayer = AVPlayer()
-
-    // Create a player layer for the player.
-    let playerLayer = AVPlayerLayer(player: contentPlayer)
-
-    // Size, position, and display the AVPlayer.
-    playerLayer.frame = videoView.layer.bounds
-    videoView.layer.addSublayer(playerLayer)
-  }
-
-  // MARK: SDK Setup
-
-  func setupAdsLoader() {
-    adsLoader = IMAAdsLoader(settings: nil)
-    adsLoader?.delegate = self
-  }
-
   func requestStream() {
-    // Create an ad display container for ad rendering.
-    adDisplayContainer = IMAAdDisplayContainer(
-      adContainer: videoView,
-      viewController: self,
-      companionSlots: nil)
-    // Create an IMAAVPlayerVideoDisplay to give the SDK access to your video player.
-    let imaVideoDisplay = IMAAVPlayerVideoDisplay(avPlayer: contentPlayer!)
     // Create a stream request. Use one of "Livestream request" or "VOD request".
-    if ViewController.requestType == StreamType.liveStream {
+    if ViewController.requestType == StreamType.live {
       // Livestream request.
       let request = IMALiveStreamRequest(
         assetKey: ViewController.assetKey,
@@ -106,15 +117,12 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
       adsLoader?.requestStream(with: request)
     }
   }
-
-  func startMediaSession() {
-    try? AVAudioSession.sharedInstance().setActive(true, options: [])
-    try? AVAudioSession.sharedInstance().setCategory(.playback)
-  }
+  // [END make_stream_request]
 
   // MARK: - IMAAdsLoaderDelegate
-
+  // [START ads_loader_delegates]
   func adsLoader(_ loader: IMAAdsLoader, adsLoadedWith adsLoadedData: IMAAdsLoadedData) {
+    print("Stream created with: \(String(describing: adsLoadedData.streamManager!.streamID))")
     streamManager = adsLoadedData.streamManager!
     streamManager!.delegate = self
     streamManager!.initialize(with: nil)
@@ -123,14 +131,14 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
   func adsLoader(_ loader: IMAAdsLoader, failedWith adErrorData: IMAAdLoadingErrorData) {
     print("Error loading ads: \(String(describing: adErrorData.adError.message))")
     let streamURL = URL(string: ViewController.backupStreamURLString)
-    videoDisplay.loadStream(streamURL!, withSubtitles: [])
-    videoDisplay.play()
-    playerViewController.player?.play()
+    videoPlayer.play()
   }
+  // [END ads_loader_delegates]
 
   // MARK: - IMAStreamManagerDelegate
+  // [START stream_manager_delegates]
   func streamManager(_ streamManager: IMAStreamManager, didReceive event: IMAAdEvent) {
-    print("StreamManager event \(event.typeString).")
+    print("Ad event \(event.typeString).")
     switch event.type {
     case IMAAdEventType.STREAM_STARTED:
       self.startMediaSession()
@@ -155,16 +163,16 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
       }
       break
     case IMAAdEventType.AD_BREAK_STARTED:
-      // Trigger an update to send focus to the ad display container.
-      adBreakActive = true
+      print("Ad break started.")
       break
     case IMAAdEventType.AD_BREAK_ENDED:
-      // Trigger an update to send focus to the content player.
-      adBreakActive = false
+      print("Ad break ended.")
       break
-    case IMAAdEventType.ICON_FALLBACK_IMAGE_CLOSED:
-      // Resume playback after the user has closed the dialog.
-      self.videoDisplay.play()
+    case IMAAdEventType.AD_PERIOD_STARTED:
+      print("Ad period started.")
+      break
+    case IMAAdEventType.AD_PERIOD_ENDED:
+      print("Ad period ended.")
       break
     default:
       break
@@ -172,18 +180,9 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
   }
 
   func streamManager(_ streamManager: IMAStreamManager, didReceive error: IMAAdError) {
-    print("StreamManager error: \(error.message ?? "Unknown Error")")
+    print("StreamManager error with type: \(error.type ?? "Unknown Error")")
+    print("code: \(error.code ?? "Unknown Error")")
+    print("message: \(error.message ?? "Unknown Error")")
   }
-
-  // MARK: - AVPlayerViewControllerDelegate
-  func playerViewController(
-    _ playerViewController: AVPlayerViewController,
-    timeToSeekAfterUserNavigatedFrom oldTime: CMTime,
-    to targetTime: CMTime
-  ) -> CMTime {
-    if adBreakActive {
-      return oldTime
-    }
-    return targetTime
-  }
+  // [END stream_manager_delegates]
 }
