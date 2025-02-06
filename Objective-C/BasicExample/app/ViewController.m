@@ -5,6 +5,26 @@
 @import GoogleInteractiveMediaAds;
 
 // [START_EXCLUDE]
+typedef NS_ENUM(NSInteger, StreamType) {
+  /// Live stream.
+  StreamTypeLive,
+  /// VOD.
+  StreamTypeVOD,
+};
+
+/// Specifies the ad pod stream type; either `StreamTypeLive` or `StreamTypeVOD`.
+///
+/// Change to `StreamTypeVOD` to make a VOD request.
+static StreamType const kStreamType = StreamTypeLive;
+/// Live stream asset key.
+static NSString *const kLiveStreamAssetKey = @"c-rArva4ShKVIAkNfy6HUQ";
+/// VOD content source ID.
+static NSString *const kVODContentSourceID = @"2548831";
+/// VOD video ID.
+static NSString *const kVODVideoID = @"tears-of-steel";
+/// Network code.
+static NSString *const kNetworkCode = @"21775744923";
+
 /// The backup stream is only played when an error is detected during the stream creation.
 static NSString *const kBackupContentUrl =
     @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
@@ -77,20 +97,18 @@ static NSString *const kBackupContentUrl =
   // Create a stream request. Use one of "Live stream request" or "VOD request", depending on your
   // type of stream.
   IMAStreamRequest *request;
-  // Switch this variable to NO to make a VOD request.
-  BOOL useLiveStream = YES;
-  if (useLiveStream) {
+  if (kStreamType == StreamTypeLive) {
     // Live stream request. Replace the asset key with your value.
-    request = [[IMALiveStreamRequest alloc] initWithAssetKey:@"c-rArva4ShKVIAkNfy6HUQ"
-                                                 networkCode:@"21775744923"
+    request = [[IMALiveStreamRequest alloc] initWithAssetKey:kLiveStreamAssetKey
+                                                 networkCode:kNetworkCode
                                           adDisplayContainer:self.adDisplayContainer
                                                 videoDisplay:self.imaVideoDisplay
                                                  userContext:nil];
   } else {
     // VOD request. Replace the content source ID and video ID with your values.
-    request = [[IMAVODStreamRequest alloc] initWithContentSourceID:@"2548831"
-                                                           videoID:@"tears-of-steel"
-                                                       networkCode:@"21775744923"
+    request = [[IMAVODStreamRequest alloc] initWithContentSourceID:kVODContentSourceID
+                                                           videoID:kVODVideoID
+                                                       networkCode:kNetworkCode
                                                 adDisplayContainer:self.adDisplayContainer
                                                       videoDisplay:self.imaVideoDisplay
                                                        userContext:nil];
