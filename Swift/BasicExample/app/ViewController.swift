@@ -33,6 +33,8 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
   static let contentSourceID = "2548831"
   /// Full-service DAI VOD stream video ID.
   static let videoID = "tears-of-steel"
+  /// Network code for your Google Ad Manager account.
+  static let networkCode = "21775744923"
 
   /// The backup stream to play when there is an error creating a DAI stream request.
   static let backupStreamURLString =
@@ -101,6 +103,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
       // Livestream request.
       let request = IMALiveStreamRequest(
         assetKey: ViewController.assetKey,
+        networkCode: ViewController.networkCode,
         adDisplayContainer: adDisplayContainer!,
         videoDisplay: imaVideoDisplay,
         userContext: nil)
@@ -110,6 +113,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
       let request = IMAVODStreamRequest(
         contentSourceID: ViewController.contentSourceID,
         videoID: ViewController.videoID,
+        networkCode: ViewController.networkCode,
         adDisplayContainer: adDisplayContainer!,
         videoDisplay: imaVideoDisplay,
         userContext: nil)

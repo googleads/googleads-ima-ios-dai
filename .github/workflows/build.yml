@@ -18,9 +18,15 @@ jobs:
       fail-fast: false
       matrix:
         regex:
-        - "AdvancedExample"
-        - "BasicExample"
-        - "SampleVideoPlayer"
+        - "Objective-C/AdvancedExample"
+        - "Objective-C/BasicExample"
+        - "Objective-C/PodServingExample"
+        - "Objective-C/SampleVideoPlayer"
+        - "Objective-C/VideoStitcherExample"
+        - "Swift/BasicExample"
+        - "Swift/PodServingExample"
+        - "Swift/SampleVideoPlayer"
+        - "Swift/VideoStitcherExample"
     steps:
       - name: Clone repository
         uses: actions/checkout@v1

@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger, StreamType) {
 /// The video ID for the stream. Used only for VOD.
 @property(nonatomic, copy) NSString *videoId;
 
+/// The Google Ad Manager network code.
+@property(nonatomic, copy) NSString *networkCode;
+
 /// The asset key for the stream. Used only for encrypted streams.
 @property(nonatomic, copy) NSString *apiKey;
 
@@ -33,12 +36,14 @@ typedef NS_ENUM(NSInteger, StreamType) {
 /// Returns an initialized live stream video.
 - (instancetype)initWithTitle:(NSString *)title
                      assetKey:(NSString *)assetKey
+                  networkCode:(NSString *)networkCode
                        apiKey:(NSString *)apiKey;
 
 /// Returns an initialized VOD video.
 - (instancetype)initWithTitle:(NSString *)title
               contentSourceId:(NSString *)contentSourceId
                       videoId:(NSString *)videoId
+                  networkCode:(NSString *)networkCode
                        apiKey:(NSString *)apiKey;
 
 @end

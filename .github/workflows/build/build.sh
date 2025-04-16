@@ -19,10 +19,10 @@ do
   if [[ -n "$(grep -E "(${example_app_path}|\.github\/workflows)" <<< "${CHANGES}")" ]]; then
     echo "Building for ${example_app_path}";
     example_name=$(echo "${example_app_path}" | xargs -I{} basename {});
-    echo "::set-output name=building_app::Pod install for App (${example_name})";
+    echo "{building_app}={Pod install for App (${example_name})}" >> "$GITHUB_OUTPUT";
     pushd "${example_app_path}";
     pod install --no-repo-update;
-    echo "::set-output name=building_app::Building App (${example_name})";
+    echo "{building_app}={Building App (${example_name})}" >> "$GITHUB_OUTPUT";
     eval "xcodebuild -workspace ${example_name}.xcworkspace -scheme ${example_name} -sdk iphonesimulator -arch x86_64 | xcpretty";
     popd;
   fi

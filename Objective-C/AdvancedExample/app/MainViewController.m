@@ -29,10 +29,15 @@
 // Populate the video array.
 - (void)initVideos {
   self.videos = @[
-    [[Video alloc] initWithTitle:@"Live stream" assetKey:@"c-rArva4ShKVIAkNfy6HUQ" apiKey:@""],
+    [[Video alloc] initWithTitle:@"Live stream"
+                        assetKey:@"c-rArva4ShKVIAkNfy6HUQ"
+                     networkCode:@"21775744923"
+                          apiKey:@""
+    ],
     [[Video alloc] initWithTitle:@"VOD Stream"
                  contentSourceId:@"2548831"
                          videoId:@"tears-of-steel"
+                     networkCode:@"21775744923"
                           apiKey:@""]
   ];
 }

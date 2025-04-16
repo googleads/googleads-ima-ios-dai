@@ -109,15 +109,15 @@ static NSString *const kBackupContentUrl =
     // Live stream request. Replace the network code and custom asset key with your values.
     request = [[IMAPodStreamRequest alloc] initWithNetworkCode:kNetworkCode
                                                 customAssetKey:kCustomAssetKey
-                                            adDisplayContainer:adDisplayContainer
-                                                  videoDisplay:self.videoDisplay
+                                            adDisplayContainer:self.adDisplayContainer
+                                                  videoDisplay:self.imaVideoDisplay
                                          pictureInPictureProxy:nil
                                                    userContext:nil];
   } else {
     // VOD request. Replace the network code with your value.
-    request = [[IMAPodVODStreamRequest alloc] initWithNetworkCode:@kNetworkCode
-                                               adDisplayContainer:adDisplayContainer
-                                                     videoDisplay:self.videoDisplay
+    request = [[IMAPodVODStreamRequest alloc] initWithNetworkCode:kNetworkCode
+                                               adDisplayContainer:self.adDisplayContainer
+                                                     videoDisplay:self.imaVideoDisplay
                                             pictureInPictureProxy:nil
                                                       userContext:nil];
   }
@@ -138,8 +138,8 @@ static NSString *const kBackupContentUrl =
   NSURL *streamUrl = [NSURL URLWithString:urlString];
   if (kStreamType == StreamTypeLive) {
     // Load live streams directly into the AVPlayer.
-    [self.videoDisplay loadStream:streamUrl withSubtitles:@[]];
-    [self.videoDisplay play];
+    [self.imaVideoDisplay loadStream:streamUrl withSubtitles:@[]];
+    [self.imaVideoDisplay play];
   } else {
     // Load VOD streams using the `loadThirdPartyStream` method in IMA SDK's stream manager.
     // The stream manager loads the stream, requests metadata, and starts playback.

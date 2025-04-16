@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 /// Frame for controls in portrait mode.
 @property(nonatomic, assign) CGRect portraitControlsFrame;
 
-/// Flag for tracking fullscreen.
+/// Boolean for tracking fullscreen.
 @property(nonatomic, assign) BOOL fullscreen;
 
 /// Gesture recognizer for tap on video.
@@ -407,6 +407,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   IMAStreamRequest *request;
   if (self.video.streamType == StreamTypeLive) {
     request = [[IMALiveStreamRequest alloc] initWithAssetKey:self.video.assetKey
+                                                 networkCode:self.video.networkCode
                                           adDisplayContainer:adDisplayContainer
                                                 videoDisplay:self.IMAVideoDisplay
                                                  userContext:nil];
@@ -414,6 +415,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   } else {
     request = [[IMAVODStreamRequest alloc] initWithContentSourceID:self.video.contentSourceID
                                                            videoID:self.video.videoId
+                                                       networkCode:self.video.networkCode
                                                 adDisplayContainer:adDisplayContainer
                                                       videoDisplay:self.IMAVideoDisplay
                                                        userContext:nil];

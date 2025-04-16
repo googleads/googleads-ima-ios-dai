@@ -4,5 +4,5 @@ platform :ios, '17'
 project 'PodServingExample.xcodeproj'
 
 target 'PodServingExample' do
-  pod 'GoogleAds-IMA-iOS-SDK'
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.26.1'
 end
