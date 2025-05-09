@@ -1,6 +1,6 @@
 ## Google Ads iOS IMA SDK
 
-![Build status](https://github.com/googleads/googleads-ima-ios-dai/workflows/Build%20Status/badge.svg?branch=main)
+![Build status](https://github.com/googleads/googleads-ima-ios-dai/actions/workflows/build.yml/badge.svg)
 
 This project hosts samples for the
 [DAI SDK for iOS](https://developers.google.com/ad-manager/dynamic-ad-insertion/sdk/ios-quickstart).
