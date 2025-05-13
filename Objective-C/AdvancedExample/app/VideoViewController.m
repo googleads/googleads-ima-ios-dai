@@ -450,6 +450,10 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   [self.contentPlayer play];
 }
 
+- (void)handleLinkActivatedRequest:(NSURLRequest *)request {
+  NSLog(@"Link activated request: %@", request.URL);
+}
+
 #pragma mark StreamManager Delegates
 
 - (void)streamManager:(IMAStreamManager *)streamManager didReceiveAdEvent:(IMAAdEvent *)event {
