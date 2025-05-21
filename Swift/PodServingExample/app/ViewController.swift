@@ -140,6 +140,9 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
     streamManager = adsLoadedData.streamManager!
     streamManager!.delegate = self
 
+    // Initialize the stream manager to handle ad click and user interactions with ad UI elements.
+    streamManager!.initialize(with: nil)
+
     // Build the Pod serving Stream URL.
     let streamID = streamManager!.streamId
     // Your custom VTP handler takes the stream ID and returns the stream manifest URL.
