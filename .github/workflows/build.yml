@@ -27,6 +27,7 @@ jobs:
         - "Swift/PodServingExample"
         - "Swift/SampleVideoPlayer"
         - "Swift/VideoStitcherExample"
+        - "Swift/SGAIClientSideExample"
     steps:
       - name: Clone repository
         uses: actions/checkout@v1
