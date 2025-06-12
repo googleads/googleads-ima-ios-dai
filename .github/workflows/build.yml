@@ -13,7 +13,8 @@ jobs:
   # Step 2: Build the samples
   build:
     name: Build
-    runs-on: macOS-latest
+    # SGAIClientSideExample requires Xcode 16 on macos-15 to build.
+    runs-on: macos-15
     strategy:
       fail-fast: false
       matrix:
