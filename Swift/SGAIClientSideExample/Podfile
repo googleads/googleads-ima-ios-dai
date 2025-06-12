@@ -1,8 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '17'
+platform :ios, '18'
 project 'SGAIClientSideExample.xcodeproj'
 
 target 'SGAIClientSideExample' do
-  pod 'GoogleAds-IMA-iOS-SDK'
+  pod 'GoogleAds-IMA-iOS-SDK' , '~> 3.26.1'
 end
