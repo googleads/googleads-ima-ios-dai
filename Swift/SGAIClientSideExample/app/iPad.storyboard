@@ -16,18 +16,18 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bhd-Z9-jHM">
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SGAI Client-side Example" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf" userLabel="SGAI Client-side Example">
-                                <rect key="frame" x="20" y="116" width="780" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="19.31478537360681" y="115.99999999998045" width="780" height="61.999999999973397"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
-                                <rect key="frame" x="90" y="289" width="640" height="360"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="89.616852146253905" y="288.99999999995089" width="639.9999999998447" height="360.00000000000023"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
                                         <rect key="frame" x="245" y="84" width="150" height="191"/>
@@ -47,8 +47,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="adUIView" destination="QRR-Z0-TkP" id="dQk-gF-We8"/>
                         <outlet property="playButton" destination="eRN-Vg-Dqv" id="aVm-Iq-3yY"/>
-                        <outlet property="videoView" destination="QRR-Z0-TkP" id="6ql-Zv-hmA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FX-P4-3e8" userLabel="First Responder" sceneMemberID="firstResponder"/>

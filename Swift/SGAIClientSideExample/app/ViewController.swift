@@ -1,15 +1,16 @@
-// Copyright 2025 Google LLC. All rights reserved.
+// Copyright 2025 Google LLC
 //
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
-// file except in compliance with the License. You may obtain a copy of the License at
+//     https://www.apache.org/licenses/LICENSE-2.0
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-// ANY KIND, either express or implied. See the License for the specific language governing
-// permissions and limitations under the License.
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 import AVFoundation
 import GoogleInteractiveMediaAds
@@ -21,32 +22,42 @@ class ViewController:
 {
 
   private enum StreamParameters {
-    static let contentStream = "[YOUR_LIVE_STREAM_URL]"
+    static let contentStream =
+      "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"
+
     // Find your [Google Ad Manager network code](https://support.google.com/admanager/answer/7674889)
     // or use the test network code and custom asset key with the DAI type "Pod serving manifest"
     // from [DAI sample streams](https://developers.google.com/ad-manager/dynamic-ad-insertion/streams#pod_serving_dai).
-    static let networkCode = "[YOUR_GOOGLE_AD_MANAGER_NETWORK_CODE]"
-    static let customAssetKey = "[YOUR_GOOGLE_DAI_CUSTOM_ASSET_KEY]"
+
+    /// Google Ad Manager network code.
+    static let networkCode = "21775744923"
+
+    /// Google DAI livestream custom asset key.
+    static let customAssetKey = "sgai-hls-live"
+
     // Set your ad break duration.
     static let adBreakDurationMs = 10000
   }
 
-  /// The AVPlayer instance that plays the content and the ads.
-  private var player: AVPlayer!
-
   /// The play button to start the stream.
   /// It is hidden when the stream starts playing.
   @IBOutlet private weak var playButton: UIButton!
-  @IBOutlet private weak var videoView: UIView!
 
-  /// The entry point of the IMA SDK to make stream requests to Google Ad Manager.
-  private var adsLoader: IMAAdsLoader!
+  /// The view to display the ad UI elements: countdown, skip button, etc.
+  /// It is hidden when the stream starts playing.
+  @IBOutlet private weak var adUIView: UIView!
 
-  /// The reference of your video view for the IMA SDK to create the ad's user interface elements.
+  /// The reference of your ad UI view for the IMA SDK to create the ad's user interface elements.
   private var adDisplayContainer: IMAAdDisplayContainer!
+
+  /// The AVPlayer instance that plays the content and the ads.
+  private var player: AVPlayer!
 
   /// The reference of your video player for the IMA SDK to play and monitor the ad breaks.
   private var videoDisplay: IMAAVPlayerVideoDisplay!
+
+  /// The entry point of the IMA SDK to make stream requests to Google Ad Manager.
+  private var adsLoader: IMAAdsLoader!
 
   /// The reference of the ad stream manager, set when the ad stream is loaded.
   /// The IMA SDK requires a strong reference to the stream manager for the entire duration of
@@ -60,15 +71,13 @@ class ViewController:
 
     // Initialize the IMA SDK.
     let adLoaderSettings = IMASettings()
-    // Uncomment the next line for ad UI localization.
-    // adLoaderSettings.language = "es"
     adsLoader = IMAAdsLoader(settings: adLoaderSettings)
 
     // Set up the video player and the container view.
     player = AVPlayer()
     let playerLayer = AVPlayerLayer(player: player)
-    playerLayer.frame = videoView.bounds
-    videoView.layer.addSublayer(playerLayer)
+    playerLayer.frame = adUIView.bounds
+    adUIView.layer.addSublayer(playerLayer)
     playButton.layer.zPosition = CGFloat.greatestFiniteMagnitude
 
     // Create an object to monitor the stream playback.
@@ -79,7 +88,7 @@ class ViewController:
     // Create a container object for ad UI elements.
     // See [example in video ads](https://support.google.com/admanager/answer/2695279#zippy=%2Cexample-in-video-ads)
     adDisplayContainer = IMAAdDisplayContainer(
-      adContainer: videoView, viewController: self, companionSlots: nil)
+      adContainer: adUIView, viewController: self, companionSlots: nil)
 
     // Specify the delegate for hanlding ad events of the stream session.
     adsLoader.delegate = self
