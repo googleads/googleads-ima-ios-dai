@@ -21,12 +21,13 @@ class ViewController:
 {
 
   private enum StreamParameters {
-    static let contentStream = "[YOUR_LIVE_STREAM_URL]"
+    static let contentStream =
+      "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8"
     // Find your [Google Ad Manager network code](https://support.google.com/admanager/answer/7674889)
     // or use the test network code and custom asset key with the DAI type "Pod serving manifest"
     // from [DAI sample streams](https://developers.google.com/ad-manager/dynamic-ad-insertion/streams#pod_serving_dai).
-    static let networkCode = "[YOUR_GOOGLE_AD_MANAGER_NETWORK_CODE]"
-    static let customAssetKey = "[YOUR_GOOGLE_DAI_CUSTOM_ASSET_KEY]"
+    static let networkCode = "21775744923"
+    static let customAssetKey = "sgai-hls-live"
     // Set your ad break duration.
     static let adBreakDurationMs = 10000
   }
@@ -153,7 +154,7 @@ class ViewController:
     }
 
     let adBreakStartTime = CMTime(
-      seconds: primaryPlayerCurrentItem.integratedTimeline.currentTime.seconds
+      seconds: CMTimeGetSeconds(player.currentTime())
         + Double(secondsToAdBreakStart), preferredTimescale: 1)
 
     // Create an identifier to construct the ad pod request for the next ad break.
