@@ -23,6 +23,7 @@ jobs:
         - "Objective-C/BasicExample"
         - "Objective-C/PodServingExample"
         - "Objective-C/SampleVideoPlayer"
+        - "Objective-C/Snippets"
         - "Objective-C/VideoStitcherExample"
         - "Swift/BasicExample"
         - "Swift/PodServingExample"
