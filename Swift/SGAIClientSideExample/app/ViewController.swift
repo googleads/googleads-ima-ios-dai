@@ -162,7 +162,7 @@ class ViewController:
     }
 
     let adBreakStartTime = CMTime(
-      seconds: primaryPlayerCurrentItem.integratedTimeline.currentTime.seconds
+      seconds: CMTimeGetSeconds(player.currentTime())
         + Double(secondsToAdBreakStart), preferredTimescale: 1)
 
     // Create an identifier to construct the ad pod request for the next ad break.
