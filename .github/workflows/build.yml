@@ -28,6 +28,7 @@ jobs:
         - "Swift/BasicExample"
         - "Swift/PodServingExample"
         - "Swift/SampleVideoPlayer"
+        - "Swift/Snippets"
         - "Swift/VideoStitcherExample"
         - "Swift/SGAIClientSideExample"
     steps:
