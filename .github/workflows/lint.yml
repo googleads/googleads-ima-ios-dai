@@ -32,5 +32,5 @@ jobs:
         run: swiftlint version
 
       - name: Lint Swift code
-        run: swiftlint lint --config .github/workflows/build/.swiftlint.yml --strict --reporter github-actions-logging
+        run: swiftlint lint Swift --config .github/workflows/build/.swiftlint.yml --strict --reporter github-actions-logging
 
