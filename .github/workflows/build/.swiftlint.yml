@@ -1,9 +1,5 @@
 # SwiftLint Configuration for IMA iOS DAI Examples
 
-# Paths to include in linting
-included:
-  - Swift
-
 # Paths to exclude from linting
 excluded:
   - Pods

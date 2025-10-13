@@ -16,6 +16,7 @@ on:
     - 'Swift/**/*.swift'
     - '.github/workflows/build/.swiftlint.yml'
     - '.github/workflows/lint.yml'
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   swiftlint:
