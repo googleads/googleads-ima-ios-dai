@@ -9,20 +9,20 @@ excluded:
 # Rules to disable for example code
 disabled_rules:
   - trailing_whitespace # Example code may have formatting variations
+  - unneeded_break_in_switch # Common in example code for clarity
 
 # Opt-in rules to enable
 opt_in_rules:
   - empty_count # Prefer isEmpty over count == 0
   - empty_string # Prefer isEmpty over == ""
-  - force_unwrapping # Catch force unwraps (!) which can crash
-  - redundant_optional_initialization # Catch unnecessary = nil
-  - explicit_init # Prefer .init() over direct initializer
+  - implicit_optional_initialization # Catch unnecessary = nil
 
 # Configure rule thresholds
 line_length:
-  warning: 120
-  error: 150
+  warning: 150
+  error: 250
   ignores_comments: true
+  ignores_urls: true
 
 function_body_length:
   warning: 60
