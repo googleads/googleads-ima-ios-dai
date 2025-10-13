@@ -1,0 +1,36 @@
+name: SwiftLint
+
+# Run on pull-requests or pushes to main
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'Swift/**/*.swift'
+    - '.github/workflows/build/.swiftlint.yml'
+    - '.github/workflows/lint.yml'
+  pull_request:
+    branches:
+    - main
+    paths:
+    - 'Swift/**/*.swift'
+    - '.github/workflows/build/.swiftlint.yml'
+    - '.github/workflows/lint.yml'
+
+jobs:
+  swiftlint:
+    name: SwiftLint
+    runs-on: macos-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: SwiftLint version
+        run: swiftlint version
+
+      - name: Lint Swift code
+        run: swiftlint lint --config .github/workflows/build/.swiftlint.yml --strict --reporter github-actions-logging
+

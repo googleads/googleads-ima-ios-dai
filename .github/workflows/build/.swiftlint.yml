@@ -1,0 +1,59 @@
+# SwiftLint Configuration for IMA iOS DAI Examples
+
+# Paths to include in linting
+included:
+  - Swift
+
+# Paths to exclude from linting
+excluded:
+  - Pods
+  - .build
+  - DerivedData
+
+# Rules to disable for example code
+disabled_rules:
+  - trailing_whitespace # Example code may have formatting variations
+
+# Opt-in rules to enable
+opt_in_rules:
+  - empty_count # Prefer isEmpty over count == 0
+  - empty_string # Prefer isEmpty over == ""
+  - force_unwrapping # Catch force unwraps (!) which can crash
+  - redundant_optional_initialization # Catch unnecessary = nil
+  - explicit_init # Prefer .init() over direct initializer
+
+# Configure rule thresholds
+line_length:
+  warning: 120
+  error: 150
+  ignores_comments: true
+
+function_body_length:
+  warning: 60
+  error: 100
+
+file_length:
+  warning: 500
+  error: 800
+
+type_body_length:
+  warning: 300
+  error: 500
+
+# Identifier naming rules
+identifier_name:
+  min_length:
+    warning: 2
+  max_length:
+    warning: 50
+  excluded:
+    - id
+    - ad
+
+# Severity overrides
+force_cast: warning # Allow force casts with warning in examples
+force_try: warning # Allow force try with warning in examples
+
+# Reporter type
+reporter: "xcode"
+
