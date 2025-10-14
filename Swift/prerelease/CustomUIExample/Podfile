@@ -1,0 +1,8 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '17'
+project 'CustomUIExample.xcodeproj'
+
+target 'CustomUIExample' do
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.27.4'
+end
