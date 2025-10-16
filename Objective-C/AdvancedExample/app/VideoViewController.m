@@ -118,6 +118,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   [self requestStream];
 }
 
+  // [START save_bookmark_example]
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self.contentPlayer pause];
@@ -129,6 +130,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
           contentTimeForStreamTime:CMTimeGetSeconds(self.contentPlayer.currentTime)];
       [self.delegate videoViewController:self didReportSavedTime:contentTime forVideo:self.video];
     }
+  // [END save_bookmark_example]
     // Only remove AVPlayer tracking if we added it already.
     if (self.trackingContent) {
       [self removeContentPlayerObservers];
@@ -494,6 +496,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
       [self logMessage:@"Ad period ended"];
       break;
     }
+    // [START load_bookmark_example]
     case kIMAAdEvent_STREAM_LOADED: {
       if (self.video.streamType == StreamTypeVOD) {
         [self addContentPlayerObservers];
@@ -501,9 +504,10 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
           NSTimeInterval streamTime =
               [self.streamManager streamTimeForContentTime:self.video.savedTime];
           [self.IMAVideoDisplay seekStreamToTime:streamTime];
-         self.video.savedTime = 0;
+          self.video.savedTime = 0;
         }
       }
+      // [END load_bookmark_example]
       self.streamPlaying = YES;
       [self showSubtitles];
       break;
