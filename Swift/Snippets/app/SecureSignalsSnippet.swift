@@ -19,7 +19,7 @@ class SecureSignalsSnippet: NSObject {
 
   func setSecureSignals(streamRequest: IMAStreamRequest) {
     // [START make_secure_signals_stream_request]
-    let signals = IMASecureSignals(customData: "My encoded signal string")
+    let signals = IMASecureSignals(customData: "ENCODED_SIGNAL_STRING")
     streamRequest.secureSignals = signals
     // [END make_secure_signals_stream_request]
   }
