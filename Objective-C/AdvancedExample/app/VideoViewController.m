@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   [self requestStream];
 }
 
-  // [START save_bookmark_example]
+// [START save_bookmark_example]
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [self.contentPlayer pause];
@@ -130,7 +130,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
           contentTimeForStreamTime:CMTimeGetSeconds(self.contentPlayer.currentTime)];
       [self.delegate videoViewController:self didReportSavedTime:contentTime forVideo:self.video];
     }
-  // [END save_bookmark_example]
+    // [END save_bookmark_example]
     // Only remove AVPlayer tracking if we added it already.
     if (self.trackingContent) {
       [self removeContentPlayerObservers];
