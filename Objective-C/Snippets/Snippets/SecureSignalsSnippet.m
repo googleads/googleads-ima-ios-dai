@@ -12,7 +12,7 @@
 - (void)setSecureSignals:(IMAStreamRequest *)streamRequest  {
   // [START make_secure_signals_stream_request]
   IMASecureSignals *signals =
-      [[IMASecureSignals alloc] initWithCustomData:@"My encoded signal string"];
+      [[IMASecureSignals alloc] initWithCustomData:@"ENCODED_SIGNAL_STRING"];
   streamRequest.secureSignals = signals;
   // [END make_secure_signals_stream_request]
 }
