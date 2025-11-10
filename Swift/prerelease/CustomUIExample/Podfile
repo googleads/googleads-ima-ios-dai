@@ -1,6 +1,0 @@
-platform :ios, '17'
-project 'CustomUIExample.xcodeproj'
-
-target 'CustomUIExample' do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.28.10'
-end
