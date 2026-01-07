@@ -25,6 +25,7 @@ jobs:
         - "Objective-C/SampleVideoPlayer"
         - "Objective-C/Snippets"
         - "Objective-C/VideoStitcherExample"
+        - "Swift/AdvancedExample"
         - "Swift/BasicExample"
         - "Swift/PodServingExample"
         - "Swift/SampleVideoPlayer"
