@@ -1,0 +1,6 @@
+platform :ios, '17'
+project 'AdvancedExample.xcodeproj'
+
+target 'AdvancedExample' do
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.28.10'
+end
