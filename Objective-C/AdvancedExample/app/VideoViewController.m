@@ -329,6 +329,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   self.videoControls.alpha = 1;
 }
 
+// [START snapback_example]
 - (IBAction)videoControlsTouchStarted:(id)sender {
   [NSObject cancelPreviousPerformRequestsWithTarget:self
                                             selector:@selector(hideFullscreenControls)
@@ -356,6 +357,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
     }
   }
 }
+// [END snapback_example]
 
 - (void)showFullscreenControls:(UITapGestureRecognizer *)recognizer {
   if (self.fullscreen) {
@@ -477,6 +479,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
       self.adPlaying = YES;
       break;
     }
+    //[START snapback_case]
     case kIMAAdEvent_AD_BREAK_ENDED: {
       [self logMessage:@"Ad break ended"];
       self.adPlaying = NO;
@@ -488,6 +491,7 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
       }
       break;
     }
+    // [END snapback_case]
     case kIMAAdEvent_AD_PERIOD_STARTED: {
       [self logMessage:@"Ad period started"];
       break;

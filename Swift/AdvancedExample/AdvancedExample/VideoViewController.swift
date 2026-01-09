@@ -124,6 +124,7 @@ class VideoViewController: UIViewController,
   }
 
   // MARK: - Bookmark Saving
+  // [START save_bookmark_example]
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     contentPlayer.pause()
@@ -145,6 +146,7 @@ class VideoViewController: UIViewController,
       adsLoader = nil
     }
   }
+  // [END save_bookmark_example]
 
   deinit {
     removeContentPlayerObservers()
@@ -228,6 +230,7 @@ class VideoViewController: UIViewController,
     contentPlayer.seek(to: CMTime(seconds: Double(sender.value), preferredTimescale: 1000))
   }
 
+  // [START snapback_example]
   @IBAction func progressBarTouchStarted(_ sender: UISlider) {
     guard !isAdPlaying else { return }
     currentlySeeking = true
@@ -256,6 +259,7 @@ class VideoViewController: UIViewController,
       }
     }
   }
+  // [END snapback_example]
 
   func updatePlayHead(with time: CMTime, duration: CMTime) {
     guard CMTIME_IS_VALID(time) else { return }
@@ -471,6 +475,7 @@ class VideoViewController: UIViewController,
       isAdPlaying = false
       progressBar.isUserInteractionEnabled = true
       updatePlayHeadState(isPlaying: self.isContentPlaying)
+    // [START snapback_case]
     case .AD_BREAK_ENDED:
       logMessage("Ad break ended")
       isAdPlaying = false
@@ -487,6 +492,7 @@ class VideoViewController: UIViewController,
         bookmarkStreamTime = nil
       }
       updatePlayHeadState(isPlaying: self.isContentPlaying)
+    // [END snapback_case]
     case .AD_BREAK_STARTED:
       logMessage("Ad break started")
       isAdPlaying = true
@@ -497,6 +503,7 @@ class VideoViewController: UIViewController,
     case .AD_PERIOD_ENDED:
       logMessage("Ad period ended")
     // MARK: Bookmark Loading
+    // [START load_bookmark_example]
     case .STREAM_LOADED:
       guard let stream else { return }
       addContentPlayerObservers()
@@ -510,6 +517,7 @@ class VideoViewController: UIViewController,
           vodStream.bookmarkTime = 0
         }
       }
+      // [END load_bookmark_example]
       showSubtitles()
       contentPlayer.play()
       isStreamPlaying = true
