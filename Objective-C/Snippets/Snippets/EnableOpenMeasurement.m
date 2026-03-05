@@ -21,7 +21,7 @@
 @end
 
 @implementation EnableOpenMeasurement
-// [START enable_om_sdk]
+// [START register_obstructions]
 - (void)registerObstructionsForContainer:(IMAAdDisplayContainer *)displayContainer {
     UIView *transparentTapOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 250)];
     UIButton *myPauseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 10)];
@@ -37,9 +37,11 @@
     [displayContainer registerFriendlyObstruction:overlayObstruction];
     [displayContainer registerFriendlyObstruction:pauseButtonObstruction];
 }
+// [END register_obstructions]
+// [START unregister_obstructions]
 - (void)unregisterObstructionsForContainer:(IMAAdDisplayContainer *)displayContainer {
     // This removes all previously registered friendly obstructions from the container.
     [displayContainer unregisterAllFriendlyObstructions];
 }
-// [END enable_om_sdk]
+// [END unregister_obstructions]
 @end

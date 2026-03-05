@@ -18,8 +18,8 @@ import UIKit
 /// IMA iOS SDK - Enable Open Measurement
 /// Registering friendly obstructions for video controls using the IMA DAI SDK for iOS to improve ad viewability scores.
 class EnableOpenMeasurement {
-  // [START enable_om_sdk]
-  func setupFriendlyObstructions(displayContainer: IMAAdDisplayContainer) {
+  // [START register_obstructions]
+  func registerObstructions(displayContainer: IMAAdDisplayContainer) {
     let transparentTapOverlay = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 250))
     let myPauseButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 10))
 
@@ -36,9 +36,11 @@ class EnableOpenMeasurement {
     displayContainer.register(overlayObstruction)
     displayContainer.register(pauseButtonObstruction)
   }
-
+  // [END register_obstructions]
+  // [START unregister_obstructions]
   func unregisterObstructions(displayContainer: IMAAdDisplayContainer) {
+    // This removes all previously registered friendly obstructions from the container.
     displayContainer.unregisterAllFriendlyObstructions()
   }
-  // [END enable_om_sdk]
+  // [END unregister_obstructions]
 }
