@@ -14,6 +14,7 @@
 
 // [START set_up_view_controller]
 import AVFoundation
+import CryptoKit
 import GoogleInteractiveMediaAds
 import UIKit
 
@@ -123,6 +124,25 @@ class ViewController:
       pictureInPictureProxy: nil,
       userContext: nil)
 
+    // Generate and set the authToken using the secret from AppDelegate.Secrets.
+    let streamCreateSecret = AppDelegate.Secrets.streamCreateSecret
+    if !streamCreateSecret.isEmpty {
+      let expirationTime = Int(Date().timeIntervalSince1970) + 3600
+      let params: [String: Any] = [
+        "custom_asset_key": StreamParameters.customAssetKey,
+        "exp": expirationTime,
+        "network_code": StreamParameters.networkCode,
+      ]
+      if let authToken = generateAuthToken(params: params, secret: streamCreateSecret) {
+        streamRequest.authToken = authToken
+        print("AdsManager: Making PodStreamRequest with auth.")
+      } else {
+        print("AdsManager: Failed to generate auth token. Making PodStreamRequest without auth.")
+      }
+    } else {
+      print("AdsManager: Making PodStreamRequest without auth (streamCreateSecret is empty).")
+    }
+
     // Register a streaming session on Google Ad Manager DAI servers.
     adsLoader.requestStream(with: streamRequest)
   }
@@ -171,12 +191,37 @@ class ViewController:
         + Double(secondsToAdBreakStart), preferredTimescale: 1)
 
     // Create an identifier to construct the ad pod request for the next ad break.
-    let adPodIdentifier = generatePodIdentifier(from: currentSeconds)
+    let adPodIdentifier = generateAdBreakId()
+
+    // Generate HMAC token for the manifest URL using the secret from AppDelegate.Secrets.
+    let manifestSecret = AppDelegate.Secrets.manifestSecret
+    guard !manifestSecret.isEmpty else {
+      print("Manifest secret is empty. Cannot generate auth token for ad pod manifest.")
+      return
+    }
+
+    let expirationTime = Int(Date().timeIntervalSince1970) + 3600
+    let params: [String: Any] = [
+      "ad_break_id": adPodIdentifier.replacingOccurrences(of: "ad_break_id/", with: ""),
+      "custom_asset_key": StreamParameters.customAssetKey,
+      "exp": expirationTime,
+      "network_code": StreamParameters.networkCode,
+      "pd": StreamParameters.adBreakDurationMs,
+    ]
+
+    guard let authToken = generateAuthToken(params: params, secret: manifestSecret) else {
+      print(
+        "Failed to generate auth token for ad pod manifest. Skipping insertion of \(adPodIdentifier)."
+      )
+      return
+    }
+    let encodedAuthToken =
+      authToken.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
     guard
       let adPodManifestUrl = URL(
         string:
-          "https://dai.google.com/linear/pods/v1/hls/network/\(StreamParameters.networkCode)/custom_asset/\(StreamParameters.customAssetKey)/\(adPodIdentifier).m3u8?stream_id=\(streamID)&pd=\(StreamParameters.adBreakDurationMs)"
+          "https://dai.google.com/linear/pods/v1/hls/network/\(StreamParameters.networkCode)/custom_asset/\(StreamParameters.customAssetKey)/\(adPodIdentifier).m3u8?stream_id=\(streamID)&pd=\(StreamParameters.adBreakDurationMs)&auth-token=\(encodedAuthToken)"
       )
     else {
       print("Failed to generate the ad pod manifest URL. Skipping insertion of \(adPodIdentifier).")
@@ -198,17 +243,52 @@ class ViewController:
   }
   // [END schedule_ad_insertion]
 
-  // [START generate_pod_id]
-  /// Generates a pod identifier based on the current time.
+  // [START generate_auth_token]
+  /// Generates an HMAC-SHA256 token based on the provided parameters and secret.
+  /// Matches the logic in javascript/ads/interactivemedia/sdk/dai/sample/h5/hbbtv/ads_manager.js.
   ///
-  /// See [HLS pod manifest parameters](https://developers.google.com/ad-manager/dynamic-ad-insertion/api/pod-serving/reference/live#path_parameters_3).
-  ///
-  /// - Returns: The pod identifier in either the format of "pod/{integer}" or "ad_break_id/{string}".
-  private func generatePodIdentifier(from currentSeconds: Int) -> String {
-    let minute = Int(currentSeconds / 60) + 1
-    return "ad_break_id/mid-roll-\(minute)"
+  /// - Parameters:
+  ///   - params: A dictionary of parameters to include in the token.
+  ///   - secret: The secret key for HMAC.
+  /// - Returns: The generated HMAC token string, or nil if an error occurs.
+  private func generateAuthToken(params: [String: Any], secret: String) -> String? {
+    let sortedKeys = params.keys.sorted()
+    var tokenPairs: [String] = []
+
+    for key in sortedKeys {
+      if let value = params[key] {
+        tokenPairs.append("\(key)=\(value)")
+      }
+    }
+
+    let tokenString = tokenPairs.joined(separator: "~")
+
+    guard let secretData = secret.data(using: .utf8) else {
+      print("Error: Could not convert secret to Data.")
+      return nil
+    }
+    guard let tokenData = tokenString.data(using: .utf8) else {
+      print("Error: Could not convert tokenString to Data.")
+      return nil
+    }
+
+    let key = SymmetricKey(data: secretData)
+    let hmac = HMAC<SHA256>.authenticationCode(for: tokenData, using: key)
+    let hexHash = hmac.compactMap { String(format: "%02x", $0) }.joined()
+
+    return "\(tokenString)~hmac=\(hexHash)"
   }
-  // [END generate_pod_id]
+  // [END generate_auth_token]
+
+  // [START generate_ad_break_id]
+  /// Generates an ad break ID based on the current time in minutes.
+  /// Matches the logic in javascript/ads/interactivemedia/sdk/dai/sample/h5/hbbtv/ads_manager.js.
+  /// - Returns: The ad break ID prefixed with "ab".
+  private func generateAdBreakId() -> String {
+    let minutesSinceEpoch = Int(Date().timeIntervalSince1970 / 60)
+    return "ad_break_id/ab\(minutesSinceEpoch)"
+  }
+  // [END generate_ad_break_id]
 
   // [START handle_stream_load_events]
   // MARK: - IMAAdsLoaderDelegate

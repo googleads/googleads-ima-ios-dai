@@ -27,4 +27,15 @@ import UIKit
     return true
   }
 
+  /// Secrets provided by your Google Ad Manager account.
+  /// See https://developers.google.com/ad-manager/dynamic-ad-insertion/api/pod-serving/live/stream-session-requests
+  struct Secrets {
+    /// Stream Create Authentication Key.
+    static let streamCreateSecret =
+      "YOUR_SECRET_KEY"
+
+    /// Pod Resource Authentication Key.
+    static let manifestSecret = "YOUR_SECRET_KEY"
+  }
+
 }
