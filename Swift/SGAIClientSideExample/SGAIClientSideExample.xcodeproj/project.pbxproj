@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		128B5F372FABE60E00BC9E0C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128B5F362FABE60E00BC9E0C /* Secrets.swift */; };
 		4438F8AB2BB6CC8B8943E908 /* libPods-SGAIClientSideExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A480C5D3A0A7FE60926AC1 /* libPods-SGAIClientSideExample.a */; };
 		D20D1DC82C1652260021D157 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC62C1652260021D157 /* iPhone.storyboard */; };
 		D20D1DC92C1652260021D157 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC72C1652260021D157 /* iPad.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		128B5F362FABE60E00BC9E0C /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		3E34FAC0057E1500F80F7221 /* Pods-SGAIClientSideExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGAIClientSideExample.debug.xcconfig"; path = "Target Support Files/Pods-SGAIClientSideExample/Pods-SGAIClientSideExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7ABA35827D4F0F596543A4EB /* Pods-SGAIClientSideExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SGAIClientSideExample.release.xcconfig"; path = "Target Support Files/Pods-SGAIClientSideExample/Pods-SGAIClientSideExample.release.xcconfig"; sourceTree = "<group>"; };
 		D20D1DC62C1652260021D157 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		D21627922C165053004B08EF /* SGAIClientSideExample */ = {
 			isa = PBXGroup;
 			children = (
+				128B5F362FABE60E00BC9E0C /* Secrets.swift */,
 				D21627932C165053004B08EF /* AppDelegate.swift */,
 				D21627972C165053004B08EF /* ViewController.swift */,
 				D20D1DC72C1652260021D157 /* iPad.storyboard */,
@@ -116,7 +119,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					D216278F2C165053004B08EF = {
 						CreatedOnToolsVersion = 15.3;
@@ -184,9 +187,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SGAIClientSideExample/Pods-SGAIClientSideExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SGAIClientSideExample/Pods-SGAIClientSideExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -201,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21627982C165053004B08EF /* ViewController.swift in Sources */,
+				128B5F372FABE60E00BC9E0C /* Secrets.swift in Sources */,
 				D21627942C165053004B08EF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +251,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z95L3YYF93;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -266,6 +275,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -306,6 +316,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z95L3YYF93;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -322,6 +333,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -335,7 +347,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z95L3YYF93;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = app/Info.plist;
@@ -372,7 +383,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z95L3YYF93;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = app/Info.plist;
