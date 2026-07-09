@@ -107,6 +107,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAStreamManagerDe
         adDisplayContainer: adDisplayContainer!,
         videoDisplay: imaVideoDisplay,
         userContext: nil)
+      request.useHLSInterstitials = true
       adsLoader?.requestStream(with: request)
     } else {
       // VOD stream request.

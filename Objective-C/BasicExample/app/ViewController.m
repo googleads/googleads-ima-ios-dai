@@ -96,24 +96,27 @@ static NSString *const kBackupContentUrl =
 - (void)requestStream {
   // Create a stream request. Use one of "Live stream request" or "VOD request", depending on your
   // type of stream.
-  IMAStreamRequest *request;
   if (kStreamType == StreamTypeLive) {
     // Live stream request. Replace the asset key with your value.
-    request = [[IMALiveStreamRequest alloc] initWithAssetKey:kLiveStreamAssetKey
+    IMALiveStreamRequest *request =
+        [[IMALiveStreamRequest alloc] initWithAssetKey:kLiveStreamAssetKey
+                                           networkCode:kNetworkCode
+                                    adDisplayContainer:self.adDisplayContainer
+                                          videoDisplay:self.imaVideoDisplay
+                                           userContext:nil];
+    request.useHLSInterstitials = YES;
+    [self.adsLoader requestStreamWithRequest:request];
+  } else {
+    // VOD request. Replace the content source ID and video ID with your values.
+    IMAVODStreamRequest *request =
+        [[IMAVODStreamRequest alloc] initWithContentSourceID:kVODContentSourceID
+                                                     videoID:kVODVideoID
                                                  networkCode:kNetworkCode
                                           adDisplayContainer:self.adDisplayContainer
                                                 videoDisplay:self.imaVideoDisplay
                                                  userContext:nil];
-  } else {
-    // VOD request. Replace the content source ID and video ID with your values.
-    request = [[IMAVODStreamRequest alloc] initWithContentSourceID:kVODContentSourceID
-                                                           videoID:kVODVideoID
-                                                       networkCode:kNetworkCode
-                                                adDisplayContainer:self.adDisplayContainer
-                                                      videoDisplay:self.imaVideoDisplay
-                                                       userContext:nil];
+    [self.adsLoader requestStreamWithRequest:request];
   }
-  [self.adsLoader requestStreamWithRequest:request];
 }
 // [END make_stream_request]
 
