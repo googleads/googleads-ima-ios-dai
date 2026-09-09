@@ -14,6 +14,7 @@
 		1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
 		1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 		1F1409382E8D711700362718 /* SecureSignalsSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1409372E8D710400362718 /* SecureSignalsSnippet.m */; };
+		D6736B77AB21F354297D577C /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 69024978219FA2EF7C147D81 /* GoogleInteractiveMediaAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6736B77AB21F354297D577C /* GoogleInteractiveMediaAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +56,6 @@
 				152D49DE19B10DA0003400E4 /* Resources */,
 				1589E159199126CA00E5DF1A /* Snippets */,
 				1589E158199126CA00E5DF1A /* Products */,
-				EF5500AFC5B331632B6ADC57 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,13 +92,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EF5500AFC5B331632B6ADC57 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +108,9 @@
 			dependencies = (
 			);
 			name = Snippets;
+			packageProductDependencies = (
+				69024978219FA2EF7C147D81 /* GoogleInteractiveMediaAds */,
+			);
 			productName = Snippets;
 			productReference = 1589E157199126CA00E5DF1A /* Snippets.app */;
 			productType = "com.apple.product-type.application";
@@ -142,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 1589E14E199126CA00E5DF1A;
+			packageReferences = (
+				03F1B5D15D360FD38AD3EB48 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+			);
 			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,6 +227,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -262,6 +266,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -277,7 +285,10 @@
 				INFOPLIST_FILE = Snippets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -291,7 +302,10 @@
 				INFOPLIST_FILE = Snippets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -318,6 +332,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03F1B5D15D360FD38AD3EB48 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.33.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		69024978219FA2EF7C147D81 /* GoogleInteractiveMediaAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03F1B5D15D360FD38AD3EB48 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+			productName = GoogleInteractiveMediaAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
 }

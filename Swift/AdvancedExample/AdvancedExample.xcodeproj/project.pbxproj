@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05A383C2AFA58EBD4D42592D /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = E59D17283D755E507AEB5438 /* GoogleInteractiveMediaAds */; };
 		12E64FB12ECF6F5B00C319D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E64FB02ECF6F5100C319D9 /* MainViewController.swift */; };
 		12E64FB52ECF714A00C319D9 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E64FB42ECF714400C319D9 /* VideoViewController.swift */; };
 		12E64FC52EF09CAF00C319D9 /* VODStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E64FC42EF09CAF00C319D9 /* VODStream.swift */; };
 		12E64FC72EF09CB800C319D9 /* LiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E64FC62EF09CB800C319D9 /* LiveStream.swift */; };
 		12E64FC92EF09CE700C319D9 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E64FC82EF09CE700C319D9 /* Stream.swift */; };
-		6C23E6022F3416665C896CEF /* libPods-AdvancedExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C94C8666F3FFBFA156C8D352 /* libPods-AdvancedExample.a */; };
 		D20D1DC82C1652260021D157 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC62C1652260021D157 /* iPhone.storyboard */; };
 		D20D1DC92C1652260021D157 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC72C1652260021D157 /* iPad.storyboard */; };
 		D21627942C165053004B08EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21627932C165053004B08EF /* AppDelegate.swift */; };
@@ -25,9 +25,6 @@
 		12E64FC42EF09CAF00C319D9 /* VODStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VODStream.swift; sourceTree = "<group>"; };
 		12E64FC62EF09CB800C319D9 /* LiveStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStream.swift; sourceTree = "<group>"; };
 		12E64FC82EF09CE700C319D9 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
-		3777A32B67A69D9FC022C14D /* Pods-AdvancedExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvancedExample.debug.xcconfig"; path = "Target Support Files/Pods-AdvancedExample/Pods-AdvancedExample.debug.xcconfig"; sourceTree = "<group>"; };
-		C3AE168C6CCCB61492D8ED8B /* Pods-AdvancedExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvancedExample.release.xcconfig"; path = "Target Support Files/Pods-AdvancedExample/Pods-AdvancedExample.release.xcconfig"; sourceTree = "<group>"; };
-		C94C8666F3FFBFA156C8D352 /* libPods-AdvancedExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdvancedExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20D1DC62C1652260021D157 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		D20D1DC72C1652260021D157 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		D21627902C165053004B08EF /* AdvancedExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvancedExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,37 +38,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C23E6022F3416665C896CEF /* libPods-AdvancedExample.a in Frameworks */,
+				05A383C2AFA58EBD4D42592D /* GoogleInteractiveMediaAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		28756AC6AE4E2D2BA21861ED /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C94C8666F3FFBFA156C8D352 /* libPods-AdvancedExample.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C3F09BE363D05255D29BD1ED /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3777A32B67A69D9FC022C14D /* Pods-AdvancedExample.debug.xcconfig */,
-				C3AE168C6CCCB61492D8ED8B /* Pods-AdvancedExample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		D21627872C165053004B08EF = {
 			isa = PBXGroup;
 			children = (
 				D21627922C165053004B08EF /* AdvancedExample */,
 				D21627912C165053004B08EF /* Products */,
-				C3F09BE363D05255D29BD1ED /* Pods */,
-				28756AC6AE4E2D2BA21861ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,17 +85,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D21627A72C165055004B08EF /* Build configuration list for PBXNativeTarget "AdvancedExample" */;
 			buildPhases = (
-				1641B391C2BFED97D1D3C18B /* [CP] Check Pods Manifest.lock */,
 				D216278C2C165053004B08EF /* Sources */,
 				D216278D2C165053004B08EF /* Frameworks */,
 				D216278E2C165053004B08EF /* Resources */,
-				A03EFB72E498FAFF01D01014 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AdvancedExample;
+			packageProductDependencies = (
+				E59D17283D755E507AEB5438 /* GoogleInteractiveMediaAds */,
+			);
 			productName = AdvancedExample;
 			productReference = D21627902C165053004B08EF /* AdvancedExample.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +125,9 @@
 				Base,
 			);
 			mainGroup = D21627872C165053004B08EF;
+			packageReferences = (
+				DADC7DC88DDDD1DD568C87C2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+			);
 			productRefGroup = D21627912C165053004B08EF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,48 +149,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1641B391C2BFED97D1D3C18B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AdvancedExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A03EFB72E498FAFF01D01014 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdvancedExample/Pods-AdvancedExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AdvancedExample/Pods-AdvancedExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AdvancedExample/Pods-AdvancedExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D216278C2C165053004B08EF /* Sources */ = {
@@ -285,6 +225,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -343,6 +287,10 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -352,7 +300,6 @@
 		};
 		D21627A82C165055004B08EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3777A32B67A69D9FC022C14D /* Pods-AdvancedExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -373,6 +320,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = google.AdvancedExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -387,7 +338,6 @@
 		};
 		D21627A92C165055004B08EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3AE168C6CCCB61492D8ED8B /* Pods-AdvancedExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -408,6 +358,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = google.AdvancedExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -442,6 +396,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DADC7DC88DDDD1DD568C87C2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.33.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E59D17283D755E507AEB5438 /* GoogleInteractiveMediaAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DADC7DC88DDDD1DD568C87C2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+			productName = GoogleInteractiveMediaAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D21627882C165053004B08EF /* Project object */;
 }

@@ -9,7 +9,7 @@ This project hosts samples for the
 
 *   XCode 8 or newer
 *   iOS 10.0+
-*   CocoaPods (optional but recommended)
+*   Swift Package Manager (SPM)
 
 ### Installation Instructions
 

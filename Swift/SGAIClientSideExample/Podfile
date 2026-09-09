@@ -1,6 +1,0 @@
-platform :ios, '18'
-project 'SGAIClientSideExample.xcodeproj'
-
-target 'SGAIClientSideExample' do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.33.0'
-end
