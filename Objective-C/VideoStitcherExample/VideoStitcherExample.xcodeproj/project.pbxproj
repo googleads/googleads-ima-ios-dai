@@ -10,6 +10,7 @@
 		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		76E11747406CAAD1A978D520 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 022EDDD9EBF1E8853B0F8DA0 /* GoogleInteractiveMediaAds */; };
 		A093EE5525D362960020CE6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE4C25D362950020CE6C /* AppDelegate.m */; };
+		1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E165199126CA00E5DF1A /* IMASceneDelegate.m */; };
 		A093EE5625D362960020CE6C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A093EE4D25D362950020CE6C /* iPhone.storyboard */; };
 		A093EE5725D362960020CE6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A093EE4F25D362950020CE6C /* Images.xcassets */; };
 		A093EE5925D362960020CE6C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE5225D362950020CE6C /* ViewController.m */; };
@@ -35,6 +36,8 @@
 		15C30C4F1AE6D50500374786 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A093EE4B25D362950020CE6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A093EE4C25D362950020CE6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1589E164199126CA00E5DF1A /* IMASceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMASceneDelegate.h; sourceTree = "<group>"; };
+		1589E165199126CA00E5DF1A /* IMASceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMASceneDelegate.m; sourceTree = "<group>"; };
 		A093EE4E25D362950020CE6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		A093EE4F25D362950020CE6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A093EE5025D362950020CE6C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 			children = (
 				A093EE4B25D362950020CE6C /* AppDelegate.h */,
 				A093EE4C25D362950020CE6C /* AppDelegate.m */,
+				1589E164199126CA00E5DF1A /* IMASceneDelegate.h */,
+				1589E165199126CA00E5DF1A /* IMASceneDelegate.m */,
 				A093EE4D25D362950020CE6C /* iPhone.storyboard */,
 				A093EE4F25D362950020CE6C /* Images.xcassets */,
 				A093EE5025D362950020CE6C /* Info.plist */,
@@ -187,6 +192,7 @@
 				A093EE5925D362960020CE6C /* ViewController.m in Sources */,
 				A093EE5B25D362960020CE6C /* main.m in Sources */,
 				A093EE5525D362960020CE6C /* AppDelegate.m in Sources */,
+				1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
