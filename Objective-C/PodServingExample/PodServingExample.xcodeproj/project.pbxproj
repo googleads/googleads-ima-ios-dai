@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E165199126CA00E5DF1A /* IMASceneDelegate.m */; };
 		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		37F2F71EC2C5224C79689EEE /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 07A2CC98A28A68E7B85123D7 /* GoogleInteractiveMediaAds */; };
 		A093EE5525D362960020CE6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EE4C25D362950020CE6C /* AppDelegate.m */; };
@@ -32,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		1589E157199126CA00E5DF1A /* PodServingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodServingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1589E164199126CA00E5DF1A /* IMASceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMASceneDelegate.h; sourceTree = "<group>"; };
+		1589E165199126CA00E5DF1A /* IMASceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMASceneDelegate.m; sourceTree = "<group>"; };
 		15C30C4F1AE6D50500374786 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A093EE4B25D362950020CE6C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A093EE4C25D362950020CE6C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 			children = (
 				A093EE4B25D362950020CE6C /* AppDelegate.h */,
 				A093EE4C25D362950020CE6C /* AppDelegate.m */,
+				1589E164199126CA00E5DF1A /* IMASceneDelegate.h */,
+				1589E165199126CA00E5DF1A /* IMASceneDelegate.m */,
 				A093EE4D25D362950020CE6C /* iPhone.storyboard */,
 				A093EE4F25D362950020CE6C /* Images.xcassets */,
 				A093EE5025D362950020CE6C /* Info.plist */,
@@ -187,6 +192,7 @@
 				A093EE5925D362960020CE6C /* ViewController.m in Sources */,
 				A093EE5B25D362960020CE6C /* main.m in Sources */,
 				A093EE5525D362960020CE6C /* AppDelegate.m in Sources */,
+				1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
