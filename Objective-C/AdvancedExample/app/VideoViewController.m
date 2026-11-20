@@ -69,6 +69,9 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 /// Bool to maintain state of content trackers. These need to be removed when the view deallocates.
 @property(nonatomic, assign) BOOL trackingContent;
 
+/// Tracks whether the initial orientation check after layout has completed.
+@property(nonatomic, assign) BOOL didCheckInitialOrientation;
+
 @end
 
 @implementation VideoViewController
@@ -104,14 +107,20 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
   [self.view bringSubviewToFront:self.videoView];
   [self.view bringSubviewToFront:self.videoControls];
 
-  // Check orientation, set to fullscreen if we're in landscape
-  if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft ||
-      [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
-    [self viewDidEnterLandscape];
-  }
-
   self.adsLoader.delegate = self;
   [self setUpContentPlayer];
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  if (!self.didCheckInitialOrientation && self.view.window != nil) {
+    self.didCheckInitialOrientation = YES;
+    // Check orientation, set to fullscreen if we're in landscape.
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft ||
+        [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+      [self viewDidEnterLandscape];
+    }
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -298,18 +307,11 @@ typedef NS_ENUM(NSInteger, PlayButtonType) {
 
 - (void)viewDidEnterLandscape {
   self.fullscreen = YES;
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-    self.fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.height, screenRect.size.width);
-    self.fullscreenControlsFrame =
-        CGRectMake(0, (screenRect.size.width - self.videoControls.frame.size.height),
-                   screenRect.size.height, self.videoControls.frame.size.height);
-  } else {
-    self.fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height);
-    self.fullscreenControlsFrame =
-        CGRectMake(0, (screenRect.size.height - self.videoControls.frame.size.height),
-                   screenRect.size.width, self.videoControls.frame.size.height);
-  }
+  CGRect viewBounds = self.view.bounds;
+  self.fullscreenVideoFrame = CGRectMake(0, 0, viewBounds.size.width, viewBounds.size.height);
+  self.fullscreenControlsFrame =
+      CGRectMake(0, viewBounds.size.height - self.videoControls.frame.size.height,
+                 viewBounds.size.width, self.videoControls.frame.size.height);
   [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
   [[self navigationController] setNavigationBarHidden:YES];
   self.videoView.frame = self.fullscreenVideoFrame;
